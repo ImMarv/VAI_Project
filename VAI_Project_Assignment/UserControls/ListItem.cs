@@ -28,6 +28,14 @@ namespace VAI_Project_Assignment
         private string _entryDescription;
         private Image _vendorImage;
 
+        private void viewEntryButton_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void viewEntryButton_MouseEnter(object sender, EventArgs e)
+        {
+        }
 
         /// <summary>
         /// I assume that these are constructors. Since I am making my own tool, 

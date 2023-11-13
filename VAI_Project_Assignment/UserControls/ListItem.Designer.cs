@@ -33,6 +33,7 @@
             entrySubtitleLabel = new Label();
             entryDescriptionLabel = new Label();
             iconPanel = new Panel();
+            viewEntryButton = new Button();
             ((System.ComponentModel.ISupportInitialize)entryLogoPicture).BeginInit();
             iconPanel.SuspendLayout();
             SuspendLayout();
@@ -50,7 +51,7 @@
             entryTitleLabel.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             entryTitleLabel.Location = new Point(106, 0);
             entryTitleLabel.Name = "entryTitleLabel";
-            entryTitleLabel.Size = new Size(634, 37);
+            entryTitleLabel.Size = new Size(239, 37);
             entryTitleLabel.TabIndex = 1;
             entryTitleLabel.Text = "[Entry Title]";
             // 
@@ -59,7 +60,7 @@
             entrySubtitleLabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             entrySubtitleLabel.Location = new Point(112, 37);
             entrySubtitleLabel.Name = "entrySubtitleLabel";
-            entrySubtitleLabel.Size = new Size(628, 25);
+            entrySubtitleLabel.Size = new Size(233, 25);
             entrySubtitleLabel.TabIndex = 2;
             entrySubtitleLabel.Text = "[Entry Subtitle]";
             // 
@@ -67,7 +68,7 @@
             // 
             entryDescriptionLabel.Location = new Point(112, 62);
             entryDescriptionLabel.Name = "entryDescriptionLabel";
-            entryDescriptionLabel.Size = new Size(628, 26);
+            entryDescriptionLabel.Size = new Size(233, 26);
             entryDescriptionLabel.TabIndex = 3;
             entryDescriptionLabel.Text = "[Entry Description]";
             // 
@@ -80,16 +81,31 @@
             iconPanel.Size = new Size(100, 100);
             iconPanel.TabIndex = 4;
             // 
+            // viewEntryButton
+            // 
+            viewEntryButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            viewEntryButton.Location = new Point(575, 24);
+            viewEntryButton.Name = "viewEntryButton";
+            viewEntryButton.Size = new Size(144, 50);
+            viewEntryButton.TabIndex = 5;
+            viewEntryButton.Text = "View Entry";
+            viewEntryButton.UseVisualStyleBackColor = true;
+            viewEntryButton.MouseEnter += viewEntryButton_MouseEnter;
+            viewEntryButton.MouseLeave += viewEntryButton_MouseLeave;
+            // 
             // ListItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(viewEntryButton);
             Controls.Add(iconPanel);
             Controls.Add(entryDescriptionLabel);
             Controls.Add(entrySubtitleLabel);
             Controls.Add(entryTitleLabel);
             Name = "ListItem";
-            Size = new Size(807, 100);
+            Size = new Size(746, 98);
             ((System.ComponentModel.ISupportInitialize)entryLogoPicture).EndInit();
             iconPanel.ResumeLayout(false);
             ResumeLayout(false);
@@ -102,5 +118,6 @@
         private Label entrySubtitleLabel;
         private Label entryDescriptionLabel;
         private Panel iconPanel;
+        private Button viewEntryButton;
     }
 }

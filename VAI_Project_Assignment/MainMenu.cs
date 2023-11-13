@@ -37,5 +37,15 @@ namespace VAI_Project_Assignment
             }
 
         }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            // log-out logic
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // search engine logic
+        }
     }
 }
