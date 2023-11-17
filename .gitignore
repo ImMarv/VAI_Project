@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/VAI_Project_Assignment/VMI.mdf
+/VAI_Project_Assignment/VMI_log.ldf
