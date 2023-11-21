@@ -18,10 +18,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
-			<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
-			<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 		</Compile>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 	</ItemGroup>
+
 
 	<ItemGroup>
 		<Reference Include="System.Windows.Forms" />
@@ -51,4 +52,3 @@
 	</ItemGroup>
 
 </Project>
-
