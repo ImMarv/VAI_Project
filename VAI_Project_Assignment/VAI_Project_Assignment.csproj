@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
+ HEAD
     <Folder Include="Pages\" />
     <Folder Include="placeholder\" />
   </ItemGroup>
