@@ -84,7 +84,7 @@
             // viewEntryButton
             // 
             viewEntryButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            viewEntryButton.Location = new Point(575, 24);
+            viewEntryButton.Location = new Point(665, 24);
             viewEntryButton.Name = "viewEntryButton";
             viewEntryButton.Size = new Size(144, 50);
             viewEntryButton.TabIndex = 5;
@@ -105,7 +105,7 @@
             Controls.Add(entrySubtitleLabel);
             Controls.Add(entryTitleLabel);
             Name = "ListItem";
-            Size = new Size(746, 98);
+            Size = new Size(840, 100);
             ((System.ComponentModel.ISupportInitialize)entryLogoPicture).EndInit();
             iconPanel.ResumeLayout(false);
             ResumeLayout(false);

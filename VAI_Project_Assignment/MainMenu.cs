@@ -1,3 +1,5 @@
+using System.Data;
+
 namespace VAI_Project_Assignment
 {
     public partial class MainMenu : Form
@@ -9,34 +11,37 @@ namespace VAI_Project_Assignment
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            populateEntryData();
+            PopulateEntryData();
         }
 
         // this method is in charge of populating the entryViewPanel with our list view!
-        private void populateEntryData()
+        private void PopulateEntryData()
         {
-            ListItem[] listItems = new ListItem[20]; // where 10 is placed, we'd add a callout for the count of data.
+            // getting the instance of DB connection
+            DBConnection dBConnectionMM = DBConnection.getInstanceOfDBConnection();
 
-            // loops through each item
-            for (int i = 0; i < listItems.Length; i++)
+            // execute the query to get the results
+            DataSet dataSetVendor = dBConnectionMM.getDataSet(
+                "SELECT company_name, company_established, last_reviewed_date FROM Company"
+                );
+
+            // clear the panel first to before adding new items
+            entryViewPanel.Controls.Clear();
+
+            // now: this will go through each row in the Table created.
+            foreach (DataRow row in dataSetVendor.Tables[0].Rows)
             {
-                // issue here: I forgot to create the list object. I've been stuck here for half an hour. I'm dumb.
-                listItems[i] = new ListItem();
-                listItems[i].entryTitle = "Database callout for titles";
-                listItems[i].entryType = "Database callout for subtitles";
-                listItems[i].entryDescription = "Database callout for description";
-                // here we add it straight to the flowlayout >:)
-                // we'll create an if so as to ensure that if the entryViewPanel's count is less more than 0, then we clear it (?)
-                if (entryViewPanel.Controls.Count < 0)
-                {
-                    entryViewPanel.Controls.Clear();
-                }
-                else
-                    entryViewPanel.Controls.Add(listItems[i]);
+                // create a new ListItem for each row
+                var listItem = new ListItem();
+                listItem.entryTitle = row["company_name"].ToString();
+                listItem.entryType = row["company_established"].ToString();
+                listItem.entryDescription = row["last_reviewed_date"].ToString();
 
+                // add the ListItem to the panel
+                entryViewPanel.Controls.Add(listItem);
             }
-
         }
+
 
         private void logoutButton_Click(object sender, EventArgs e)
         {

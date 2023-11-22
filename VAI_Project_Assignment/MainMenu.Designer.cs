@@ -61,9 +61,11 @@
             // 
             // userProfilePicture
             // 
+            userProfilePicture.Image = Properties.Resources.defaulticon;
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
             userProfilePicture.Size = new Size(50, 50);
+            userProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             userProfilePicture.TabIndex = 7;
             userProfilePicture.TabStop = false;
             // 
