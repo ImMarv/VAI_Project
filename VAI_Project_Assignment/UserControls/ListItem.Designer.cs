@@ -31,9 +31,9 @@
             entryLogoPicture = new PictureBox();
             entryTitleLabel = new Label();
             entrySubtitleLabel = new Label();
-            entryDescriptionLabel = new Label();
             iconPanel = new Panel();
             viewEntryButton = new Button();
+            reviewDateLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)entryLogoPicture).BeginInit();
             iconPanel.SuspendLayout();
             SuspendLayout();
@@ -49,7 +49,7 @@
             // entryTitleLabel
             // 
             entryTitleLabel.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-            entryTitleLabel.Location = new Point(106, 0);
+            entryTitleLabel.Location = new Point(106, 15);
             entryTitleLabel.Name = "entryTitleLabel";
             entryTitleLabel.Size = new Size(239, 37);
             entryTitleLabel.TabIndex = 1;
@@ -58,19 +58,11 @@
             // entrySubtitleLabel
             // 
             entrySubtitleLabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            entrySubtitleLabel.Location = new Point(112, 37);
+            entrySubtitleLabel.Location = new Point(106, 52);
             entrySubtitleLabel.Name = "entrySubtitleLabel";
             entrySubtitleLabel.Size = new Size(233, 25);
             entrySubtitleLabel.TabIndex = 2;
             entrySubtitleLabel.Text = "[Entry Subtitle]";
-            // 
-            // entryDescriptionLabel
-            // 
-            entryDescriptionLabel.Location = new Point(112, 62);
-            entryDescriptionLabel.Name = "entryDescriptionLabel";
-            entryDescriptionLabel.Size = new Size(233, 26);
-            entryDescriptionLabel.TabIndex = 3;
-            entryDescriptionLabel.Text = "[Entry Description]";
             // 
             // iconPanel
             // 
@@ -93,15 +85,26 @@
             viewEntryButton.MouseEnter += viewEntryButton_MouseEnter;
             viewEntryButton.MouseLeave += viewEntryButton_MouseLeave;
             // 
+            // reviewDateLabel
+            // 
+            reviewDateLabel.AutoSize = true;
+            reviewDateLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
+            reviewDateLabel.Location = new Point(106, 87);
+            reviewDateLabel.Name = "reviewDateLabel";
+            reviewDateLabel.Size = new Size(67, 13);
+            reviewDateLabel.TabIndex = 6;
+            reviewDateLabel.Text = "ReviewDate";
+            reviewDateLabel.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // ListItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(reviewDateLabel);
             Controls.Add(viewEntryButton);
             Controls.Add(iconPanel);
-            Controls.Add(entryDescriptionLabel);
             Controls.Add(entrySubtitleLabel);
             Controls.Add(entryTitleLabel);
             Name = "ListItem";
@@ -109,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)entryLogoPicture).EndInit();
             iconPanel.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -116,8 +120,8 @@
         private PictureBox entryLogoPicture;
         private Label entryTitleLabel;
         private Label entrySubtitleLabel;
-        private Label entryDescriptionLabel;
         private Panel iconPanel;
         private Button viewEntryButton;
+        private Label reviewDateLabel;
     }
 }
