@@ -47,5 +47,10 @@ namespace VAI_Project_Assignment
         {
             // search engine logic
         }
+
+        private void entryViewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

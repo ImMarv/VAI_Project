@@ -9,6 +9,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="VMI.mdf" />
+	  <None Remove="VMI_log.ldf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="VMI.mdf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="VMI_log.ldf">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<Folder Include="Pages\" />
 		<Folder Include="placeholder\" />
 	</ItemGroup>
