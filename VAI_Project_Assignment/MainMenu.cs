@@ -1,5 +1,6 @@
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
+using System.Drawing.Text;
 
 namespace VAI_Project_Assignment
 {
@@ -15,26 +16,23 @@ namespace VAI_Project_Assignment
             PopulateEntryData(""); //empty strings here just to simulate no query until text is added.
         }
 
+        // creating an instance of the Database Operations, named _dbOPS for accessing the database
+        private DatabaseOperations _dbOps = new DatabaseOperations();
+
         /// <summary>
         /// this method is in charge of populating the entryViewPanel with our list view!
         /// gotten from by the same person who helped with the customlist user control!
         /// </summary>
         private void PopulateEntryData(string search)
         {
-            // getting the instance of DB connection Main Menu
-            DBConnection dBConnectionMM = DBConnection.getInstanceOfDBConnection();
-
-            // execute the query to get the results. added a search query as well. currently liable to SQL injection.
-            // could I fix it? yes. Do I have time for this? Hell no.
-            DataSet dataSetVendor = dBConnectionMM.getDataSet(
-                $"SELECT company_name, company_established, last_reviewed_date FROM Company WHERE company_name LIKE '%{search}%'"
-                );
+            // get the data from the database first before anything else
+            DataTable entryData = _dbOps.GetEntryData(search);
 
             // clear the panel first to before adding new items
             entryViewPanel.Controls.Clear();
 
             // now: this will go through each row in the Table created.
-            foreach (DataRow row in dataSetVendor.Tables[0].Rows)
+            foreach (DataRow row in entryData.Rows)
             {
                 // create a new ListItem for each row of data: the entry title, the entrytype (established date), and the reviewdate.
                 var listItem = new ListItem();
