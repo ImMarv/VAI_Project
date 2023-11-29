@@ -27,8 +27,7 @@ namespace VAI_Project_Assignment.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFileName=C:\\Users\\ender\\Source\\Repos\\I" +
-            "mMarv\\VAI_Project\\VAI_Project_Assignment\\appdata\\VMI.mdf;Integrated Security=Tru" +
-            "e;")]
+            "mMarv\\VAI_Project\\VAI_Project_Assignment\\VMI.mdf;Integrated Security=True;")]
         public string DBConnectionString {
             get {
                 return ((string)(this["DBConnectionString"]));

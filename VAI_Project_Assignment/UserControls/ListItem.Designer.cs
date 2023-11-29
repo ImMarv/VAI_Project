@@ -89,7 +89,7 @@
             // 
             reviewDateLabel.AutoSize = true;
             reviewDateLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point);
-            reviewDateLabel.Location = new Point(106, 87);
+            reviewDateLabel.Location = new Point(106, 77);
             reviewDateLabel.Name = "reviewDateLabel";
             reviewDateLabel.Size = new Size(67, 13);
             reviewDateLabel.TabIndex = 6;

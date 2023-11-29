@@ -15,7 +15,10 @@ namespace VAI_Project_Assignment
             PopulateEntryData(""); //empty strings here just to simulate no query until text is added.
         }
 
-        // this method is in charge of populating the entryViewPanel with our list view!
+        /// <summary>
+        /// this method is in charge of populating the entryViewPanel with our list view!
+        /// gotten from by the same person who helped with the customlist user control!
+        /// </summary>
         private void PopulateEntryData(string search)
         {
             // getting the instance of DB connection Main Menu
@@ -52,9 +55,6 @@ namespace VAI_Project_Assignment
                 {
                     listItem.ForeColor = Color.Orange;
                 }
-
-
-
 
                 // add the ListItem to the panel
                 entryViewPanel.Controls.Add(listItem);
