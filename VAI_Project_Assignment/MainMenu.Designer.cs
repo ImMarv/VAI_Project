@@ -50,20 +50,23 @@
             entryViewPanel.Name = "entryViewPanel";
             entryViewPanel.Size = new Size(1264, 548);
             entryViewPanel.TabIndex = 3;
+            entryViewPanel.Paint += entryViewPanel_Paint;
             // 
             // searchTextBox
             // 
             searchTextBox.Location = new Point(12, 9);
             searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(257, 27);
+            searchTextBox.Size = new Size(257, 37);
             searchTextBox.TabIndex = 6;
             searchTextBox.TextChanged += searchTextBox_TextChanged;
             // 
             // userProfilePicture
             // 
+            userProfilePicture.Image = Properties.Resources.defaulticon;
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
             userProfilePicture.Size = new Size(50, 50);
+            userProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             userProfilePicture.TabIndex = 7;
             userProfilePicture.TabStop = false;
             // 
@@ -108,13 +111,13 @@
             label1.AutoSize = true;
             label1.Location = new Point(67, 27);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(71, 30);
             label1.TabIndex = 8;
             label1.Text = "label1";
             // 
             // MainMenu
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1264, 681);

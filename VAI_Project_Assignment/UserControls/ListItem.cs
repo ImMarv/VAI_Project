@@ -25,7 +25,7 @@ namespace VAI_Project_Assignment
         /// </summary>
         private string _entryTitle;
         private string _entryType;
-        private string _entryDescription;
+        private string _entryReviewDate;
         private Image _vendorImage;
 
         private void viewEntryButton_MouseLeave(object sender, EventArgs e)
@@ -61,10 +61,10 @@ namespace VAI_Project_Assignment
         }
 
         [Category("Custom Props")]
-        public string entryDescription
+        public string entryReviewDate
         {
-            get { return _entryDescription; }
-            set { _entryDescription = value; entryDescriptionLabel.Text = value; }
+            get { return _entryReviewDate; }
+            set { _entryReviewDate = value; reviewDateLabel.Text = value; }
 
         }
 
