@@ -71,5 +71,10 @@ namespace VAI_Project_Assignment
         {
             PopulateEntryData(searchTextBox.Text); // runs the command as soon as it changes
         }
+
+        private void entryViewPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
