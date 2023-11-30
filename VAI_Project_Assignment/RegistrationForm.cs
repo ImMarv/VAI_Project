@@ -10,16 +10,22 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+
+
 
 namespace VAI_Project_Assignment
 {
+    
     public partial class RegistrationForm : Form
     {
         // Defining contants for database connection
-        internal const string ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\2227823LocalDB.mdf;Integrated Security=True;Connect Timeout=30";
-        internal const string ConnectionStringName = "2227823_DBConnection";
+        private const string ConnectionStringName = "2227823LocalDB";
+        private string connectionString;
+
         // Defining the Error Provider field
         private ErrorProvider errorProvider;
+
         // Enabling a new Phone number validator
         private PhoneNumberValidation phoneNumberValidator = new PhoneNumberValidation();
 
@@ -27,6 +33,9 @@ namespace VAI_Project_Assignment
         {
             InitializeComponent();
             PopulateCountryCodes();
+
+            var connectionStringSettings = ConfigurationManager.ConnectionStrings[ConnectionStringName];
+            connectionString = connectionStringSettings.ConnectionString;
 
             // Initializing a new instance of the Error Providor
             errorProvider = new ErrorProvider();
@@ -199,12 +208,32 @@ namespace VAI_Project_Assignment
             btnRegister.Enabled = AreAllFieldsValid() && phoneNumberValidator.IsPhoneNumberValid();
         }
 
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
+            if (AreAllFieldsValid() && phoneNumberValidator.IsPhoneNumberValid())
+            {
+                // Retrieve values from textboxes
+                string firstName = txtFirstName.Text;
+                string lastName = txtLastName.Text;
+                string emailAddress = txtEmailAddress.Text;
+                string phoneNumber = cboCountryCode.SelectedItem + " " + txtPhoneNumber.Text;
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
 
-            this.Hide();
-            loginForm.Show();
+                // Initialize the database helper with the connection string
+                _2227823_DBHelper dbHelper = new _2227823_DBHelper(connectionString);
+
+                // Insert the user's data into the database
+                dbHelper.InsertUserData(firstName, lastName, emailAddress, phoneNumber, username, password);
+
+                MessageBox.Show("Registration successful!");
+
+                LoginForm loginForm = new LoginForm();
+
+                this.Hide();
+                loginForm.Show();
+            }
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
