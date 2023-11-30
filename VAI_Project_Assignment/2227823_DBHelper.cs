@@ -17,6 +17,7 @@ namespace VAI_Project_Assignment
             this.connectionString = connectionString;
         }
 
+        // Method for adding a new user to the database
         public void InsertUserData(string firstName, string lastName, string emailAddress, string phoneNumber, string username, string password)
         {
             // Each user is set to regular by default
@@ -48,6 +49,25 @@ namespace VAI_Project_Assignment
 
                         userCommand.ExecuteNonQuery();
                     }
+                }
+            }
+        }
+
+        // Method for authenticating a user that's loging in
+        public bool AuthenticateUser(string username, string password)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [User] WHERE username = @Username AND password = @Password", connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    int userCount = Convert.ToInt32(command.ExecuteScalar());
+
+                    return userCount > 0;
                 }
             }
         }
