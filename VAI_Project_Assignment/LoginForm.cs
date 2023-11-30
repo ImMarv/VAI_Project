@@ -18,8 +18,6 @@ namespace VAI_Project_Assignment
         // Defining the connection string
         private string connectionString;
         internal const string ConnectionStringName = "2227823LocalDB";
-        // Defining the Error Provider field
-        private ErrorProvider errorProvider;
 
         public LoginForm()
         {
@@ -32,17 +30,17 @@ namespace VAI_Project_Assignment
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string enteredPassword = txtPassword.Text;
 
             // Create an instance of the DB helper
             _2227823_DBHelper dbHelper = new _2227823_DBHelper(connectionString);
 
-            // Authenticate user
-            bool isAuthenticated = dbHelper.AuthenticateUser(username, password);
+            // Authenticate user using BCrypt
+            bool isAuthenticated = dbHelper.AuthenticateUser(username, enteredPassword);
 
             if (isAuthenticated)
             {
-                // If the users authenticated display success message and send to main menu
+                // If the user is authenticated, display success message and send to the main menu
                 MessageBox.Show("Login successful!");
                 MainMenu mainMenu = new MainMenu();
                 this.Hide();
@@ -50,7 +48,7 @@ namespace VAI_Project_Assignment
             }
             else
             {
-                // If unsucessful, ask the user to reenter their details
+                // If unsuccessful, ask the user to re-enter their details
                 MessageBox.Show("Invalid username or password. Please try again.");
             }
         }

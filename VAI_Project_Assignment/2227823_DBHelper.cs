@@ -18,7 +18,7 @@ namespace VAI_Project_Assignment
         }
 
         // Method for adding a new user to the database
-        public void InsertUserData(string firstName, string lastName, string emailAddress, string phoneNumber, string username, string password)
+        public void InsertUserData(string firstName, string lastName, string emailAddress, string phoneNumber, string username, string hashedPassword)
         {
             // Each user is set to regular by default
             const string defaultUserType = "RegularUser";
@@ -40,12 +40,13 @@ namespace VAI_Project_Assignment
                     int contactInfoId = Convert.ToInt32(command.ExecuteScalar());
 
                     // Insert User
-                    using (SqlCommand userCommand = new SqlCommand("INSERT INTO [User] (Contact_Info_ID, user_type, username, password) VALUES (@ContactInfoId, @UserType, @Username, @Password)", connection))
+                    using (SqlCommand userCommand = new SqlCommand("INSERT INTO [User] " +
+                        "(Contact_Info_ID, user_type, username, password) VALUES (@ContactInfoId, @UserType, @Username, @Password)", connection))
                     {
                         userCommand.Parameters.Add("@ContactInfoId", SqlDbType.Int).Value = contactInfoId;
                         userCommand.Parameters.Add("@UserType", SqlDbType.VarChar, 20).Value = defaultUserType;
                         userCommand.Parameters.Add("@Username", SqlDbType.VarChar, 20).Value = username;
-                        userCommand.Parameters.Add("@Password", SqlDbType.VarChar, 30).Value = password;
+                        userCommand.Parameters.Add("@Password", SqlDbType.VarChar, 60).Value = hashedPassword; 
 
                         userCommand.ExecuteNonQuery();
                     }
@@ -60,10 +61,33 @@ namespace VAI_Project_Assignment
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [User] WHERE username = @Username AND password = @Password", connection))
+                using (SqlCommand command = new SqlCommand("SELECT password FROM [User] WHERE username = @Username", connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password);
+
+                    string hashedPassword = command.ExecuteScalar() as string;
+
+                    // Checking password against hashed password using the Bcrypt.Net package
+                    if (!string.IsNullOrEmpty(hashedPassword) && BCrypt.Net.BCrypt.Verify(password, hashedPassword))
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
+        }
+
+        // Method for checking if a username is taken
+        public bool IsUsernameTaken(string username)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [User] WHERE username = @Username", connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
 
                     int userCount = Convert.ToInt32(command.ExecuteScalar());
 
@@ -71,6 +95,43 @@ namespace VAI_Project_Assignment
                 }
             }
         }
+
+        // Method for checking if an email address is taken
+        public bool IsEmailTaken(string emailAddress)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [ContactInfo] WHERE email_address = @EmailAddress", connection))
+                {
+                    command.Parameters.AddWithValue("@EmailAddress", emailAddress);
+
+                    int emailCount = Convert.ToInt32(command.ExecuteScalar());
+
+                    return emailCount > 0;
+                }
+            }
+        }
+
+        // Method for checking if a phone number is taken
+        public bool IsPhoneNumberTaken(string phoneNumber)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [ContactInfo] WHERE phone_number = @PhoneNumber", connection))
+                {
+                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+
+                    int phoneCount = Convert.ToInt32(command.ExecuteScalar());
+
+                    return phoneCount > 0;
+                }
+            }
+        }
     }
 }
+
 

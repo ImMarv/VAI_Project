@@ -28,7 +28,7 @@ namespace VAI_Project_Assignment
                 isPhoneNumberValid = phoneUtil.IsValidNumber(phoneNumber);
                 return isPhoneNumberValid;
             }
-            catch (NumberParseException ex)
+            catch (NumberParseException)
             {
                 // If the phone number isn't valid return false
                 isPhoneNumberValid = false;
