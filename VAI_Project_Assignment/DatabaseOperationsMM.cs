@@ -35,7 +35,7 @@ namespace VAI_Project_Assignment
         public void AddEntry(
             string companyName, 
             string companyWebsite, 
-            DateTime companyEstablished, 
+            string companyEstablished, 
             string numOfEmployees, 
             bool internalServices, 
             DateTime lastDemo, 
@@ -49,17 +49,17 @@ namespace VAI_Project_Assignment
                 {
                     new SqlParameter("@CompanyName", SqlDbType.VarChar, 100) { Value = companyName },
                     new SqlParameter("@CompanyWebsite", SqlDbType.VarChar, 250) { Value = companyWebsite },
-                    new SqlParameter("@CompanyEstablished", SqlDbType.Date) { Value = companyEstablished },
+                    new SqlParameter("@CompanyEstablished", SqlDbType.Int) { Value = companyEstablished },
                     new SqlParameter("@NoOfEmployees", SqlDbType.Int) { Value = numOfEmployees },
                     new SqlParameter("@InternalProfServices", SqlDbType.Bit) { Value = internalServices },
                     new SqlParameter("@LastDemoDate", SqlDbType.Date) { Value = lastDemo },
                     new SqlParameter("@LastReviewedDate", SqlDbType.Date) { Value = lastReview }
                 };
                 // this is the query dealing with the whole data row.
-                string sqlQuery = ("INSERT INTO Company (company_name, company_website, company_established, " +
-                          "no_of_employees, internal_prof_services, last_demo_date, last_reviewed_date) " +
-                          "VALUES (@CompanyName, @CompanyWebsite, @CompanyEstablished, " +
-                          "@NoOfEmployees, @InternalProfServices, @LastDemoDate, @LastReviewedDate)");
+                string sqlQuery = "INSERT INTO Company (company_name, company_website, company_established, no_of_employees, " +
+                                  "internal_prof_services, last_demo_date, last_reviewed_date) " +
+                                  "VALUES (@CompanyName, @CompanyWebsite, @CompanyEstablished, " +
+                                  "@NoOfEmployees, @InternalProfServices, @LastDemoDate, @LastReviewedDate)";
                 dBConnBE.getDataSet(sqlQuery, parameters); // this right here then creates the dataset, taking the query with it along with the params.
             }
             // just a nice little catch so we know when something goes wrong.

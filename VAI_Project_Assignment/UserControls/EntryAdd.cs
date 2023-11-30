@@ -25,7 +25,7 @@ namespace VAI_Project_Assignment.UserControls
             {
                 string companyName = companyNameText.Text;
                 string companyWebsite = companyWebsiteText.Text;
-                DateTime companyEstablished = companyEstablishedDate.Value;
+                string companyEstablished = companyEstablishedText.Text;
                 string numOfEmployees = companyNumOfEmployeesText.Text;
                 bool internalProfServices = isProfessionalServices.Checked;
                 DateTime lastDemoDate = companyLastDemoDate.Value;
@@ -38,9 +38,10 @@ namespace VAI_Project_Assignment.UserControls
                 MessageBox.Show("Entry added successfully!");
                 this.Close();
             }
-            
-            catch (Exception exNewEntry) { 
-                MessageBox.Show("Error adding entry: " + exNewEntry.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);            
+
+            catch (Exception exNewEntry)
+            {
+                MessageBox.Show("Error adding entry: " + exNewEntry.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

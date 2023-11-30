@@ -69,7 +69,7 @@ namespace VAI_Project_Assignment
                         }
 
                         // send SQL Query to the database 
-                        SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, connToDB);
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
                         // fill in the dataset
                         adapter.Fill(dataset);

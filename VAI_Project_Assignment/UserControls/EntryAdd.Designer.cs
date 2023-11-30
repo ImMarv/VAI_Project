@@ -30,7 +30,6 @@
         {
             companyNameText = new TextBox();
             companyWebsiteText = new TextBox();
-            companyEstablishedDate = new DateTimePicker();
             companyNumOfEmployeesText = new TextBox();
             isProfessionalServices = new CheckBox();
             companyLastDemoDate = new DateTimePicker();
@@ -43,6 +42,7 @@
             companyServicesLabel = new Label();
             companyDemoLabel = new Label();
             companyReviewLabel = new Label();
+            companyEstablishedText = new TextBox();
             SuspendLayout();
             // 
             // companyNameText
@@ -59,19 +59,11 @@
             companyWebsiteText.Size = new Size(210, 23);
             companyWebsiteText.TabIndex = 1;
             // 
-            // companyEstablishedDate
-            // 
-            companyEstablishedDate.Format = DateTimePickerFormat.Short;
-            companyEstablishedDate.Location = new Point(162, 81);
-            companyEstablishedDate.Name = "companyEstablishedDate";
-            companyEstablishedDate.Size = new Size(210, 23);
-            companyEstablishedDate.TabIndex = 2;
-            // 
             // companyNumOfEmployeesText
             // 
             companyNumOfEmployeesText.Location = new Point(162, 110);
             companyNumOfEmployeesText.Name = "companyNumOfEmployeesText";
-            companyNumOfEmployeesText.Size = new Size(210, 23);
+            companyNumOfEmployeesText.Size = new Size(118, 23);
             companyNumOfEmployeesText.TabIndex = 3;
             // 
             // isProfessionalServices
@@ -123,7 +115,7 @@
             // companyWebsiteLabel
             // 
             companyWebsiteLabel.AutoSize = true;
-            companyWebsiteLabel.Location = new Point(12, 52);
+            companyWebsiteLabel.Location = new Point(12, 55);
             companyWebsiteLabel.Name = "companyWebsiteLabel";
             companyWebsiteLabel.Size = new Size(105, 15);
             companyWebsiteLabel.TabIndex = 10;
@@ -132,7 +124,7 @@
             // companyEstablishedLabel
             // 
             companyEstablishedLabel.AutoSize = true;
-            companyEstablishedLabel.Location = new Point(12, 87);
+            companyEstablishedLabel.Location = new Point(12, 84);
             companyEstablishedLabel.Name = "companyEstablishedLabel";
             companyEstablishedLabel.Size = new Size(82, 15);
             companyEstablishedLabel.TabIndex = 11;
@@ -174,11 +166,20 @@
             companyReviewLabel.TabIndex = 15;
             companyReviewLabel.Text = "Company review date:";
             // 
+            // companyEstablishedText
+            // 
+            companyEstablishedText.Location = new Point(162, 81);
+            companyEstablishedText.MaxLength = 4;
+            companyEstablishedText.Name = "companyEstablishedText";
+            companyEstablishedText.Size = new Size(118, 23);
+            companyEstablishedText.TabIndex = 3;
+            // 
             // EntryAdd
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 300);
+            Controls.Add(companyEstablishedText);
             Controls.Add(companyReviewLabel);
             Controls.Add(companyDemoLabel);
             Controls.Add(companyServicesLabel);
@@ -191,7 +192,6 @@
             Controls.Add(companyLastDemoDate);
             Controls.Add(isProfessionalServices);
             Controls.Add(companyNumOfEmployeesText);
-            Controls.Add(companyEstablishedDate);
             Controls.Add(companyWebsiteText);
             Controls.Add(companyNameText);
             MaximizeBox = false;
@@ -207,7 +207,6 @@
 
         private TextBox companyNameText;
         private TextBox companyWebsiteText;
-        private DateTimePicker companyEstablishedDate;
         private TextBox companyNumOfEmployeesText;
         private CheckBox isProfessionalServices;
         private DateTimePicker companyLastDemoDate;
@@ -220,5 +219,6 @@
         private Label companyServicesLabel;
         private Label companyDemoLabel;
         private Label companyReviewLabel;
+        private TextBox companyEstablishedText;
     }
 }

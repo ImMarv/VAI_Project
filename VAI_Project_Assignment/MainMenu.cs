@@ -78,7 +78,7 @@ namespace VAI_Project_Assignment
 
         private void adminToolbox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selected = adminToolbox.SelectedItem as string;
+            string? selected = adminToolbox.SelectedItem as string;
 
             switch (selected)
             {
