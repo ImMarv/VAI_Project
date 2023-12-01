@@ -17,7 +17,6 @@ namespace VAI_Project_Assignment
             this.connectionString = connectionString;
         }
 
-        // Method for adding a new user to the database
         public void InsertUserData(string firstName, string lastName, string emailAddress, string phoneNumber, string username, string hashedPassword)
         {
             // Each user is set to regular by default
@@ -46,7 +45,7 @@ namespace VAI_Project_Assignment
                         userCommand.Parameters.Add("@ContactInfoId", SqlDbType.Int).Value = contactInfoId;
                         userCommand.Parameters.Add("@UserType", SqlDbType.VarChar, 20).Value = defaultUserType;
                         userCommand.Parameters.Add("@Username", SqlDbType.VarChar, 20).Value = username;
-                        userCommand.Parameters.Add("@Password", SqlDbType.VarChar, 60).Value = hashedPassword; 
+                        userCommand.Parameters.Add("@Password", SqlDbType.VarChar, 60).Value = hashedPassword;
 
                         userCommand.ExecuteNonQuery();
                     }
@@ -79,7 +78,7 @@ namespace VAI_Project_Assignment
         }
 
         // Method for checking if a username is taken
-        public bool IsUsernameTaken(string username)
+        public bool IsUsernameInDatabase(string username)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -97,7 +96,7 @@ namespace VAI_Project_Assignment
         }
 
         // Method for checking if an email address is taken
-        public bool IsEmailTaken(string emailAddress)
+        public bool IsEmailInDatabase(string emailAddress)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -115,19 +114,45 @@ namespace VAI_Project_Assignment
         }
 
         // Method for checking if a phone number is taken
-        public bool IsPhoneNumberTaken(string phoneNumber)
+        public bool IsPhoneNumberInDatabase(string phoneNumber)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM [ContactInfo] WHERE phone_number = @PhoneNumber", connection))
+                using (SqlCommand command = new SqlCommand
+                    ("SELECT COUNT(*) FROM [ContactInfo] WHERE phone_number = @PhoneNumber", connection))
                 {
                     command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
 
                     int phoneCount = Convert.ToInt32(command.ExecuteScalar());
 
                     return phoneCount > 0;
+                }
+            }
+        }
+
+        public void ResetPassword(string emailAddress, string hashedPassword)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("UPDATE [User] SET password = " +
+                        "@Password WHERE Contact_Info_ID IN (SELECT Contact_Info_ID FROM ContactInfo WHERE email_address = @EmailAddress)", connection))
+                    {
+                        command.Parameters.Add("@Password", SqlDbType.VarChar, 60).Value = hashedPassword;
+                        command.Parameters.Add("@EmailAddress", SqlDbType.VarChar, 50).Value = emailAddress;
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error updating password: {ex.Message}");
+                    throw;
                 }
             }
         }

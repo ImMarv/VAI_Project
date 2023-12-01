@@ -71,5 +71,13 @@ namespace VAI_Project_Assignment
         {
 
         }
+
+        private void lblForgotPassword_Click(object sender, EventArgs e)
+        {
+            ForgotPasswordForm forgotPasswordForm = new ForgotPasswordForm();
+
+            this.Hide();
+            forgotPasswordForm.Show();
+        }
     }
 }

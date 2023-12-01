@@ -183,7 +183,7 @@
             // 
             btnRegister.Location = new Point(332, 280);
             btnRegister.Name = "btnRegister";
-            btnRegister.Size = new Size(112, 34);
+            btnRegister.Size = new Size(115, 34);
             btnRegister.TabIndex = 15;
             btnRegister.Text = "Register";
             btnRegister.UseVisualStyleBackColor = true;
@@ -193,7 +193,7 @@
             // 
             btnReturn.Location = new Point(485, 280);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(112, 34);
+            btnReturn.Size = new Size(115, 34);
             btnReturn.TabIndex = 16;
             btnReturn.Text = "Return";
             btnReturn.UseVisualStyleBackColor = true;
@@ -201,8 +201,10 @@
             // 
             // cboCountryCode
             // 
-            cboCountryCode.DropDownWidth = 100;
+            cboCountryCode.DropDownHeight = 100;
+            cboCountryCode.DropDownWidth = 180;
             cboCountryCode.FormattingEnabled = true;
+            cboCountryCode.IntegralHeight = false;
             cboCountryCode.Location = new Point(42, 278);
             cboCountryCode.Name = "cboCountryCode";
             cboCountryCode.Size = new Size(81, 33);
@@ -213,6 +215,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDark;
             ClientSize = new Size(677, 353);
             Controls.Add(cboCountryCode);
             Controls.Add(btnReturn);

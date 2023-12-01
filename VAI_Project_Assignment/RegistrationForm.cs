@@ -15,7 +15,6 @@ using BCrypt.Net;
 
 namespace VAI_Project_Assignment
 {
-    
     public partial class RegistrationForm : Form
     {
         // Defining contants for database connection
@@ -24,7 +23,6 @@ namespace VAI_Project_Assignment
 
         // Defining the Error Provider field
         private ErrorProvider errorProvider;
-
         // Enabling a new Phone number validator
         private PhoneNumberValidation phoneNumberValidator = new PhoneNumberValidation();
 
@@ -71,7 +69,7 @@ namespace VAI_Project_Assignment
 
         // Validating the Winforms textbox against patterns from the Regular Expressions library
         // Checking if certain fields are already being used in the database (e.g., username, email address, phone number)
-        private void ValidateField(TextBox textBox, string pattern, string errorMessage, string columnName, Func<string, bool> checkDatabase)
+        public void ValidateField(TextBox textBox, string pattern, string errorMessage, string columnName, Func<string, bool> checkDatabase)
         {
             Regex regex = new Regex(pattern);
 
@@ -130,7 +128,7 @@ namespace VAI_Project_Assignment
         {
             _2227823_DBHelper dbHelper = new _2227823_DBHelper(connectionString);
             ValidateField(txtEmailAddress, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-                "Invalid email address. Please enter your details correctly.", "email_address", dbHelper.IsEmailTaken);
+                "Invalid email address. Please enter your details correctly.", "email_address", dbHelper.IsEmailInDatabase);
 
             EnableRegisterButton();
         }
@@ -158,7 +156,7 @@ namespace VAI_Project_Assignment
             string countryCode = ExtractCountryCode(selectedRegion);
             string fullPhoneNumber = countryCode + txtPhoneNumber.Text;
 
-            if (dbHelper.IsPhoneNumberTaken(fullPhoneNumber))
+            if (dbHelper.IsPhoneNumberInDatabase(fullPhoneNumber))
             {
                 SetError(txtPhoneNumber, "Phone number is already taken. Please choose another.");
             }
@@ -182,14 +180,13 @@ namespace VAI_Project_Assignment
             return selectedRegion?.Split(' ').FirstOrDefault();
         }
 
-
         // Validating username
         private void txtUsername_LostFocus(object sender, EventArgs e)
         {
             // Checking if the username is already taken
             _2227823_DBHelper dbHelper = new _2227823_DBHelper(connectionString);
             ValidateField(txtUsername, @"^(?=\S)[A-Za-z0-9]*[A-Za-z][A-Za-z0-9]*(_[A-Za-z0-9]*)?(\.[A-Za-z0-9]*)?$|^.{5,20}$",
-            "Invalid username. Must be 5 to 20 characters. May contain one dot or underscore followed by alphanumeric characters.", "username", dbHelper.IsUsernameTaken);
+            "Invalid username. Must be 5 to 20 characters. May contain one dot or underscore followed by alphanumeric characters.", "username", dbHelper.IsUsernameInDatabase);
 
             EnableRegisterButton();
         }
@@ -224,7 +221,6 @@ namespace VAI_Project_Assignment
             btnRegister.Enabled = AreAllFieldsValid() && phoneNumberValidator.IsPhoneNumberValid();
         }
 
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
             if (AreAllFieldsValid() && phoneNumberValidator.IsPhoneNumberValid())
@@ -257,7 +253,7 @@ namespace VAI_Project_Assignment
         {
             LoginForm loginForm = new LoginForm();
 
-            this.Hide();
+            this.Close();
             loginForm.Show();
         }
 
