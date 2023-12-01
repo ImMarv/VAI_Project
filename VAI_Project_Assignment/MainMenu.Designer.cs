@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             entryViewPanel = new FlowLayoutPanel();
             adminToolsPanel = new Panel();
             searchTextBox = new TextBox();
@@ -66,13 +67,13 @@
             // 
             searchTextBox.Location = new Point(12, 9);
             searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(257, 27);
+            searchTextBox.Size = new Size(257, 37);
             searchTextBox.TabIndex = 6;
             searchTextBox.TextChanged += searchTextBox_TextChanged;
             // 
             // userProfilePicture
             // 
-            userProfilePicture.Image = Properties.Resources.defaulticon;
+            userProfilePicture.Image = (Image)resources.GetObject("userProfilePicture.Image");
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
             userProfilePicture.Size = new Size(50, 50);
@@ -94,6 +95,7 @@
             userProfilePanel.Name = "userProfilePanel";
             userProfilePanel.Size = new Size(1264, 130);
             userProfilePanel.TabIndex = 8;
+            userProfilePanel.Paint += userProfilePanel_Paint;
             // 
             // logoutButton
             // 
@@ -122,7 +124,7 @@
             adminToolbox.FormattingEnabled = true;
             adminToolbox.Location = new Point(1131, 9);
             adminToolbox.Name = "adminToolbox";
-            adminToolbox.Size = new Size(121, 28);
+            adminToolbox.Size = new Size(121, 38);
             adminToolbox.TabIndex = 7;
             adminToolbox.Text = "Admin";
             adminToolbox.SelectedIndexChanged += adminToolbox_SelectedIndexChanged;
@@ -132,13 +134,13 @@
             label1.AutoSize = true;
             label1.Location = new Point(67, 27);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(71, 30);
             label1.TabIndex = 8;
             label1.Text = "label1";
             // 
             // MainMenu
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1264, 681);
