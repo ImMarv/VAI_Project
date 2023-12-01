@@ -1,6 +1,7 @@
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Text;
+using VAI_Project_Assignment.Forms;
 using VAI_Project_Assignment.UserControls;
 
 namespace VAI_Project_Assignment
@@ -13,6 +14,7 @@ namespace VAI_Project_Assignment
 
             // populating the Admin Combobox with all tools (add entry, delete entry)
             adminToolbox.Items.Add("Add entry...");
+            adminToolbox.Items.Add("Delete entry...");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -85,6 +87,9 @@ namespace VAI_Project_Assignment
                 case "Add entry...":
                     OpenAddEntryForm<EntryAdd>();
                     break;
+                case "Delete entry...":
+                    OpenDeleteEntryForm<EntryDelete>();
+                    break;
 
 
          
@@ -92,6 +97,12 @@ namespace VAI_Project_Assignment
         }
 
         private void OpenAddEntryForm<NewEntryForm>() where NewEntryForm : EntryAdd, new()
+        {
+            NewEntryForm newEntryForm = new NewEntryForm();
+            newEntryForm.ShowDialog();
+        }
+
+        private void OpenDeleteEntryForm<NewEntryForm>() where NewEntryForm : EntryDelete, new()
         {
             NewEntryForm newEntryForm = new NewEntryForm();
             newEntryForm.ShowDialog();

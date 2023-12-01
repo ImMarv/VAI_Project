@@ -13,6 +13,7 @@ namespace VAI_Project_Assignment
     /// this class will be in charge of all things relating to accessing the database. This should contain
     /// most operatioons to do with reading, writing and updating entries and more within the main menu. 
     /// Let's see how it goes...
+    /// All queries are now parametrized, which should cancel out most basic SQLInjection attempts.
     /// </summary>
     internal class DatabaseOperationsMM
     {
@@ -42,7 +43,7 @@ namespace VAI_Project_Assignment
             DateTime lastReview
             ) // I am setting the parameters dealing with the data grabbing stuff :p
         {
-            
+
             try
             {
                 SqlParameter[] parameters = // here the parameters are set for the add entry section!
@@ -65,11 +66,28 @@ namespace VAI_Project_Assignment
             // just a nice little catch so we know when something goes wrong.
             catch (Exception entryerror)
             {
-                MessageBox.Show("Exception: " + entryerror.Message);            
+                MessageBox.Show("Exception: " + entryerror.Message);
             }
-
         }
 
+        public void DeleteEntry(int companyID)
+        {
+            try
+            {
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@Company_ID", SqlDbType.Int) { Value = companyID }
+                };
 
+                string sqlQuery = "DELETE FROM Company WHERE Company_ID = @Company_ID";
+
+                dBConnBE.getDataSet(sqlQuery, parameters);
+
+            }
+            catch (Exception deleteError)
+            {
+                MessageBox.Show("Exception: " + deleteError.Message);
+            }
+        }
     }
 }
