@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace VAI_Project_Assignment.Forms
+﻿namespace VAI_Project_Assignment.Forms
 {
     public partial class EntryDelete : Form
     {
@@ -37,12 +27,13 @@ namespace VAI_Project_Assignment.Forms
         {
             try
             {
-                if (entryDataGrid.SelectedRows.Count >0)
+                if (entryDataGrid.SelectedRows.Count > 0)
                 {
-                    // Gets the company_ID from the selected row.
-                    int companyIDDel = Convert.ToInt32(entryDataGrid.SelectedRows[0].Cells["Company_ID"].Value);
 
+                    int companyIDDel = ((int)entryDataGrid.SelectedRows[0].Index);
+                    Console.WriteLine("Company_ID" + companyIDDel); // debugging
                     // validation process.
+                    Console.WriteLine("Company ID value: " + companyIDDel);
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this entry?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     //call the deleteEntry method IF DELETE is selected.
                     if (result == DialogResult.Yes)
@@ -51,7 +42,7 @@ namespace VAI_Project_Assignment.Forms
 
                         RefreshDataGridView();
                     }
-                    
+
 
                 }
                 else
@@ -61,7 +52,7 @@ namespace VAI_Project_Assignment.Forms
             }
             catch (Exception deleteError)
             {
-                MessageBox.Show("Error: " + deleteError.Message);
+                MessageBox.Show("Strange Error: " + deleteError.Message);
             }
         }
         private void RefreshDataGridView()

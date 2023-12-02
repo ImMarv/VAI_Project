@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,13 @@ namespace VAI_Project_Assignment.UserControls
         {
             InitializeComponent();
         }
-
+        private bool isUpdating = false;
         private DatabaseOperationsMM _dbOPS = new DatabaseOperationsMM();
+
+        private void SetFormForEntryUpdate(int companyID)
+        {
+
+        }
         private void sendNewEntryButton_Click(object sender, EventArgs e)
         // takes every single textbox and attach it to it's correspondent string variable (this is so looooong)
         {

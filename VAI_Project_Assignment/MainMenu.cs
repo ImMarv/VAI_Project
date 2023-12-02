@@ -15,6 +15,7 @@ namespace VAI_Project_Assignment
             // populating the Admin Combobox with all tools (add entry, delete entry)
             adminToolbox.Items.Add("Add entry...");
             adminToolbox.Items.Add("Delete entry...");
+            adminToolbox.Items.Add("Update entry...");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -89,6 +90,9 @@ namespace VAI_Project_Assignment
                     break;
                 case "Delete entry...":
                     OpenDeleteEntryForm<EntryDelete>();
+                    break;
+                case "Update entry...":
+                    OpenAddEntryForm<EntryAdd>();
                     break;
 
 
