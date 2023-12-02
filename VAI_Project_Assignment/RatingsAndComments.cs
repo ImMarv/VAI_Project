@@ -26,5 +26,15 @@ namespace VAI_Project_Assignment
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Rating_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
