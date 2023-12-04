@@ -92,8 +92,20 @@ namespace VAI_Project_Assignment
                     break;
 
 
-         
+
             }
+        }
+
+        private void userProfilePanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+
+        private void entryViewPanel_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void OpenAddEntryForm<NewEntryForm>() where NewEntryForm : EntryAdd, new()

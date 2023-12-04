@@ -51,10 +51,11 @@
             entryViewPanel.BorderStyle = BorderStyle.Fixed3D;
             entryViewPanel.Controls.Add(adminToolsPanel);
             entryViewPanel.Dock = DockStyle.Bottom;
-            entryViewPanel.Location = new Point(0, 133);
+            entryViewPanel.Location = new Point(0, 422);
             entryViewPanel.Name = "entryViewPanel";
-            entryViewPanel.Size = new Size(1264, 548);
+            entryViewPanel.Size = new Size(1264, 259);
             entryViewPanel.TabIndex = 3;
+            entryViewPanel.Paint += entryViewPanel_Paint_1;
             // 
             // adminToolsPanel
             // 
@@ -95,7 +96,6 @@
             userProfilePanel.Name = "userProfilePanel";
             userProfilePanel.Size = new Size(1264, 130);
             userProfilePanel.TabIndex = 8;
-            userProfilePanel.Paint += userProfilePanel_Paint;
             // 
             // logoutButton
             // 

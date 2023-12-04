@@ -37,6 +37,11 @@ namespace VAI_Project_Assignment
         {
         }
 
+        private void viewEntryButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// I assume that these are constructors. Since I am making my own tool, 
         /// it very likely signifies that I am naming the category of this new ListItem class.
