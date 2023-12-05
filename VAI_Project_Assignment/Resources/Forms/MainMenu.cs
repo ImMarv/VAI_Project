@@ -1,6 +1,4 @@
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace VAI_Project_Assignment
 {
@@ -15,18 +13,13 @@ namespace VAI_Project_Assignment
         private UserSession userSession;
 
         //  Initializing an instance of the MainMenu form using the UserSession data
+
         public MainMenu(UserSession userSession)
         {
             InitializeComponent();
-            
             this.userSession = userSession;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
             PopulateEntryData(""); //empty strings here just to simulate no query until text is added.
         }
-
         /// <summary>
         /// this method is in charge of populating the entryViewPanel with our list view!
         /// gotten from by the same person who helped with the customlist user control!
@@ -73,7 +66,7 @@ namespace VAI_Project_Assignment
                 entryViewPanel.Controls.Add(listItem);
             }
         }
-       
+
         private void logoutButton_Click(object sender, EventArgs e)
         {
             // log-out logic
@@ -82,11 +75,6 @@ namespace VAI_Project_Assignment
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             //PopulateEntryData(searchTextBox.Text); // runs the command as soon as it changes
-        }
-
-        private void entryViewPanel_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         //  The Click Event for when the user wishes to navigate to the UserProfileForm

@@ -50,7 +50,6 @@
             entryViewPanel.Name = "entryViewPanel";
             entryViewPanel.Size = new Size(1264, 548);
             entryViewPanel.TabIndex = 3;
-            entryViewPanel.Paint += entryViewPanel_Paint;
             // 
             // searchTextBox
             // 
