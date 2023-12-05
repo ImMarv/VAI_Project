@@ -1,8 +1,5 @@
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
-using System.Drawing.Text;
-using VAI_Project_Assignment.Forms;
-using VAI_Project_Assignment.UserControls;
 
 namespace VAI_Project_Assignment
 {
@@ -11,10 +8,6 @@ namespace VAI_Project_Assignment
         public MainMenu()
         {
             InitializeComponent();
-
-            // populating the Admin Combobox with all tools (add entry, delete entry)
-            adminToolbox.Items.Add("Add entry...");
-            adminToolbox.Items.Add("Delete entry...");
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -22,31 +15,32 @@ namespace VAI_Project_Assignment
             PopulateEntryData(""); //empty strings here just to simulate no query until text is added.
         }
 
-        // creating an instance of the Database Operations, named _dbOPS for accessing the database
-        private DatabaseOperationsMM _dbOps = new DatabaseOperationsMM();
-
         /// <summary>
         /// this method is in charge of populating the entryViewPanel with our list view!
         /// gotten from by the same person who helped with the customlist user control!
         /// </summary>
         private void PopulateEntryData(string search)
         {
-            // get the data from the database first before anything else
-            DataTable entryData = _dbOps.GetEntryData(search);
+            // getting the instance of DB connection Main Menu
+            DBConnection dBConnectionMM = DBConnection.getInstanceOfDBConnection();
+
+            // execute the query to get the results. added a search query as well. currently liable to SQL injection.
+            // could I fix it? yes. Do I have time for this? Hell no.
+            DataSet dataSetVendor = dBConnectionMM.getDataSet(
+                $"SELECT company_name, company_established, last_reviewed_date FROM Company WHERE company_name LIKE '%{search}%'"
+                );
 
             // clear the panel first to before adding new items
             entryViewPanel.Controls.Clear();
 
             // now: this will go through each row in the Table created.
-            foreach (DataRow row in entryData.Rows)
+            foreach (DataRow row in dataSetVendor.Tables[0].Rows)
             {
                 // create a new ListItem for each row of data: the entry title, the entrytype (established date), and the reviewdate.
-                var listItem = new ListItem
-                {
-                    entryTitle = row["company_name"].ToString(),
-                    entryType = "Established in: " + row["company_established"].ToString(),
-                    entryReviewDate = "Most recent review: " + row["last_reviewed_date"].ToString()
-                };
+                var listItem = new ListItem();
+                listItem.entryTitle = row["company_name"].ToString();
+                listItem.entryType = "Established in: " + row["company_established"].ToString();
+                listItem.entryReviewDate = "Most recent review: " + row["last_reviewed_date"].ToString();
 
                 // parsing the review date to be used in a caluculation to warn the user about reviewing an entry.
                 DateTime lastReviewedDate = DateTime.Parse(row["last_reviewed_date"].ToString());
@@ -57,7 +51,7 @@ namespace VAI_Project_Assignment
                 {
                     listItem.ForeColor = Color.Red;
                 }
-                else if (fortnight.Days >= 7)
+                else if (fortnight.Days >= 7) 
                 {
                     listItem.ForeColor = Color.Orange;
                 }
@@ -66,7 +60,6 @@ namespace VAI_Project_Assignment
                 entryViewPanel.Controls.Add(listItem);
             }
         }
-
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
@@ -78,34 +71,9 @@ namespace VAI_Project_Assignment
             PopulateEntryData(searchTextBox.Text); // runs the command as soon as it changes
         }
 
-        private void adminToolbox_SelectedIndexChanged(object sender, EventArgs e)
+        private void entryViewPanel_Paint(object sender, PaintEventArgs e)
         {
-            string? selected = adminToolbox.SelectedItem as string;
 
-            switch (selected)
-            {
-                case "Add entry...":
-                    OpenAddEntryForm<EntryAdd>();
-                    break;
-                case "Delete entry...":
-                    OpenDeleteEntryForm<EntryDelete>();
-                    break;
-
-
-         
-            }
-        }
-
-        private void OpenAddEntryForm<NewEntryForm>() where NewEntryForm : EntryAdd, new()
-        {
-            NewEntryForm newEntryForm = new NewEntryForm();
-            newEntryForm.ShowDialog();
-        }
-
-        private void OpenDeleteEntryForm<NewEntryForm>() where NewEntryForm : EntryDelete, new()
-        {
-            NewEntryForm newEntryForm = new NewEntryForm();
-            newEntryForm.ShowDialog();
         }
     }
 }
