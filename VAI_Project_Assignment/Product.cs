@@ -73,7 +73,7 @@ namespace VAI_Project_Assignment
         {
             // get the data from the database first before anything else
             DataTable productNameData = _dbOps.GetProductName(search);
-            
+
             // clear the panel first to before adding new items
             loadProductPanel.Controls.Clear();
 
@@ -106,7 +106,7 @@ namespace VAI_Project_Assignment
         private void cmbSearchItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             PopulateProductData(cmbSearchItems.Text);
-           
+
         }
     }
 }
