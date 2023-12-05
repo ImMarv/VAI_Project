@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VAI_Project_Assignment
 {
@@ -35,7 +36,10 @@ namespace VAI_Project_Assignment
             return _instance;
         }
 
-
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(dBConnectionString);
+        }
         /// <summary>
         /// originally, it didn't accept SQLParameter objects, but now I've done this to avoid SQL injection.
         /// This is so user data is treated as ACTUAL DATA and not SQL code.
@@ -79,7 +83,7 @@ namespace VAI_Project_Assignment
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exeception: recheck " + ex.Message);
+                MessageBox.Show("Exeception: Recheck " + ex.Message);
             }
 
             return dataset;
