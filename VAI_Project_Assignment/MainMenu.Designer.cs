@@ -96,6 +96,7 @@
             userProfilePanel.Name = "userProfilePanel";
             userProfilePanel.Size = new Size(1264, 130);
             userProfilePanel.TabIndex = 8;
+        
             // 
             // logoutButton
             // 
