@@ -1,34 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Configuration;
-using System.Text.RegularExpressions;
+﻿using System.Configuration;
+using VAI_Project_Assignment;
 
 namespace VAI_Project_Assignment
 {
     public partial class PasswordResetForm : Form
     {
-        private const string ConnectionStringName = "2227823LocalDB";
+        private const string connectionStringName = "2227823LocalDB";
         private string connectionString;
         private string userEmail;
+
+        private ErrorProvider errorProvider;
 
         public PasswordResetForm(string userEmail)
         {
             InitializeComponent();
-            var connectionStringSettings = ConfigurationManager.ConnectionStrings[ConnectionStringName];
-            connectionString = connectionStringSettings.ConnectionString;
+
+            connectionString = _2227823_DBHelper.GetConnectionString(connectionStringName);
+
             this.userEmail = userEmail;
 
-        }
-
-        private void PasswordResetForm_Load(object sender, EventArgs e)
-        {
+            ErrorProvider errorProvider = new ErrorProvider();
+            errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
 
         }
 
@@ -40,6 +32,12 @@ namespace VAI_Project_Assignment
             if (newPassword != confirmNewPassword)
             {
                 MessageBox.Show("Passwords do not match. Please try again.");
+                return;
+            }
+
+            if (!PasswordValidation.ValidatePassword(newPassword))
+            {
+                errorProvider.SetError(txtNewPassword, "Invalid password. Must be at least 8 characters long. Must contain at least one uppercase letter. Must contain at least one lowercase letter. Must contain at least one digit. May contain special characters.");
                 return;
             }
 

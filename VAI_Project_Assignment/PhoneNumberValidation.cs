@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using PhoneNumbers;
+﻿using PhoneNumbers;
 
 namespace VAI_Project_Assignment
 {
@@ -34,21 +28,9 @@ namespace VAI_Project_Assignment
                 isPhoneNumberValid = false;
                 return false;
             }
-
         }
-
         // Returns the validity of a phone number depending on the conditions met in the in the IsPhoneNumberValid(); method
         public bool IsPhoneNumberValid() => isPhoneNumberValid;
-
-        // Method for getting and formatting the country codes for the cboCountryCode combo box
-        public List<string> GetCountryCodes()
-        {
-            // Takes the list of supported regions from the libphonenumber library
-            return phoneUtil.GetSupportedRegions()
-                // Formats the listed regions "+[Country Code]"
-                .Select(region => $"+{phoneUtil.GetCountryCodeForRegion(region)}")
-                .ToList();
-        }
     }
 }
 

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace VAI_Project_Assignment
 {
@@ -15,6 +11,12 @@ namespace VAI_Project_Assignment
         public _2227823_DBHelper(string connectionString)
         {
             this.connectionString = connectionString;
+        }
+
+        public static string GetConnectionString(string connectionStringName)
+        {
+            var connectionStringSettings = ConfigurationManager.ConnectionStrings[connectionStringName];
+            return connectionStringSettings.ConnectionString;
         }
 
         public void InsertUserData(string firstName, string lastName, string emailAddress, string phoneNumber, string username, string hashedPassword)
@@ -53,7 +55,7 @@ namespace VAI_Project_Assignment
             }
         }
 
-        // Method for authenticating a user that's loging in
+        // Method for authenticating a user that's logging in
         public bool AuthenticateUser(string username, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -138,23 +140,50 @@ namespace VAI_Project_Assignment
             {
                 connection.Open();
 
-                try
-                {
-                    using (SqlCommand command = new SqlCommand("UPDATE [User] SET password = " +
+                using (SqlCommand command = new SqlCommand("UPDATE [User] SET password = " +
                         "@Password WHERE Contact_Info_ID IN (SELECT Contact_Info_ID FROM ContactInfo WHERE email_address = @EmailAddress)", connection))
-                    {
-                        command.Parameters.Add("@Password", SqlDbType.VarChar, 60).Value = hashedPassword;
-                        command.Parameters.Add("@EmailAddress", SqlDbType.VarChar, 50).Value = emailAddress;
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
                 {
-                    Console.WriteLine($"Error updating password: {ex.Message}");
-                    throw;
+                    command.Parameters.Add("@Password", SqlDbType.VarChar, 60).Value = hashedPassword;
+                    command.Parameters.Add("@EmailAddress", SqlDbType.VarChar, 50).Value = emailAddress;
+
+                    command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public UserSession RetrieveUserData(string activeUserData)
+        {
+            UserSession userSession = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("SELECT * FROM [User] INNER JOIN ContactInfo ON [User].Contact_Info_ID = ContactInfo.Contact_Info_ID WHERE [User].username = @username", connection))
+                {
+                    command.Parameters.AddWithValue("@username", activeUserData);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        userSession = new UserSession();
+
+                        userSession.UserId = reader.GetInt32(reader.GetOrdinal("user_id"));
+                        userSession.Username = reader["username"].ToString();
+                        userSession.FirstName = reader["first_name"].ToString();
+                        userSession.LastName = reader["last_name"].ToString();
+                        userSession.EmailAddress = reader["email_address"].ToString();
+                        userSession.PhoneNumber = reader["phone_number"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("User not found.");
+                    }
+                }
+            }  
+            
+            return userSession;
         }
     }
 }

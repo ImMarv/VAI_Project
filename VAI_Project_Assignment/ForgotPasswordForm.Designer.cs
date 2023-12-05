@@ -43,7 +43,6 @@
             txtEmailAddress.Name = "txtEmailAddress";
             txtEmailAddress.Size = new Size(250, 31);
             txtEmailAddress.TabIndex = 0;
-            txtEmailAddress.TextChanged += txtEmailAddress_TextChanged;
             // 
             // btnEmailVerificationCode
             // 
@@ -65,7 +64,6 @@
             txtVerifyCode.Name = "txtVerifyCode";
             txtVerifyCode.Size = new Size(250, 31);
             txtVerifyCode.TabIndex = 2;
-            txtVerifyCode.TextChanged += txtVerifyCode_TextChanged;
             // 
             // btnConfirmEmailVerificationCode
             // 
@@ -88,7 +86,6 @@
             lblEmailAddress.Size = new Size(124, 25);
             lblEmailAddress.TabIndex = 4;
             lblEmailAddress.Text = "Email Address";
-            lblEmailAddress.Click += label1_Click;
             // 
             // lblVerficationCode
             // 

@@ -1,24 +1,19 @@
-﻿using Microsoft.VisualBasic.Logging;
-using PhoneNumbers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using PhoneNumbers;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Configuration;
-using BCrypt.Net;
+using VAI_Project_Assignment;
+
 
 namespace VAI_Project_Assignment
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class RegistrationForm : Form
     {
         // Defining contants for database connection
-        private const string ConnectionStringName = "2227823LocalDB";
+        private const string connectionStringName = "2227823LocalDB";
         private string connectionString;
 
         // Defining the Error Provider field
@@ -26,13 +21,15 @@ namespace VAI_Project_Assignment
         // Enabling a new Phone number validator
         private PhoneNumberValidation phoneNumberValidator = new PhoneNumberValidation();
 
+        /// <summary>
+        /// 
+        /// </summary>
         public RegistrationForm()
         {
             InitializeComponent();
             PopulateCountryCodes();
 
-            var connectionStringSettings = ConfigurationManager.ConnectionStrings[ConnectionStringName];
-            connectionString = connectionStringSettings.ConnectionString;
+            connectionString = _2227823_DBHelper.GetConnectionString(connectionStringName);
 
             // Initializing a new instance of the Error Providor
             errorProvider = new ErrorProvider();
@@ -56,19 +53,35 @@ namespace VAI_Project_Assignment
             btnRegister.Enabled = false;
         }
 
-        // Methods for setting and clearing errors
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="errorMessage"></param>
         private void SetError(Control control, string errorMessage)
         {
             errorProvider.SetError(control, errorMessage);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="control"></param>
         private void ClearError(Control control)
         {
             errorProvider.SetError(control, null);
         }
 
-        // Validating the Winforms textbox against patterns from the Regular Expressions library
-        // Checking if certain fields are already being used in the database (e.g., username, email address, phone number)
+
+        /// <summary>
+        /// Validating the Winforms textbox against patterns from the Regular Expressions library
+        /// Checking if certain fields are already being used in the database (e.g., username, email address, phone number)
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="pattern"></param>
+        /// <param name="errorMessage"></param>
+        /// <param name="columnName"></param>
+        /// <param name="checkDatabase"></param>
         public void ValidateField(TextBox textBox, string pattern, string errorMessage, string columnName, Func<string, bool> checkDatabase)
         {
             Regex regex = new Regex(pattern);
@@ -115,6 +128,11 @@ namespace VAI_Project_Assignment
         }
 
         // Validating last name
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ValidateLastName(object sender, EventArgs e)
         {
             ValidateField(txtLastName, @"^(?=\S)[A-Za-z]{1,20}$",
@@ -181,6 +199,11 @@ namespace VAI_Project_Assignment
         }
 
         // Validating username
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtUsername_LostFocus(object sender, EventArgs e)
         {
             // Checking if the username is already taken
@@ -192,10 +215,17 @@ namespace VAI_Project_Assignment
         }
 
         // Validating the password
+        // Validating the password
         private void ValidatePassword(object sender, EventArgs e)
         {
-            ValidateField(txtPassword, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,20}$",
-            "Invalid password. Must be at least 8 characters long. Must contain at least one uppercase letter. Must contain at least one lowercase letter. Must contain at least one digit. May contain special characters.", null, null);
+            if (!PasswordValidation.ValidatePassword(txtPassword.Text))
+            {
+                SetError(txtPassword, "Invalid password. Must be at least 8 characters long. Must contain at least one uppercase letter. Must contain at least one lowercase letter. Must contain at least one digit. May contain special characters.");
+            }
+            else
+            {
+                ClearError(txtPassword);
+            }
 
             EnableRegisterButton();
         }
@@ -221,6 +251,11 @@ namespace VAI_Project_Assignment
             btnRegister.Enabled = AreAllFieldsValid() && phoneNumberValidator.IsPhoneNumberValid();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRegister_Click(object sender, EventArgs e)
         {
             if (AreAllFieldsValid() && phoneNumberValidator.IsPhoneNumberValid())
@@ -234,6 +269,7 @@ namespace VAI_Project_Assignment
                 string password = txtPassword.Text;
 
                 // Hash the password using the BCrypt.Net package(the salt is autogenerated)
+                // The default work factor is set to 10
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
                 // Insert the user into the database with the hashed password
@@ -249,51 +285,17 @@ namespace VAI_Project_Assignment
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReturn_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
 
             this.Close();
             loginForm.Show();
-        }
-
-        private void txtFirstName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtLastName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtEmailAddress_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPhoneNumber_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

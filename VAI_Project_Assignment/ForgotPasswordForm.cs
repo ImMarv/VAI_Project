@@ -7,25 +7,21 @@ namespace VAI_Project_Assignment
     public partial class ForgotPasswordForm : Form
     {
         string verificationCode;
+
         private string connectionString;
-        internal const string ConnectionStringName = "2227823LocalDB"; 
+        internal const string connectionStringName = "2227823LocalDB"; 
+
         private string userEmail;
         public ForgotPasswordForm()
         {
             InitializeComponent();
-            var connectionStringSettings = ConfigurationManager.ConnectionStrings[ConnectionStringName];
-            connectionString = connectionStringSettings.ConnectionString;
+            connectionString = _2227823_DBHelper.GetConnectionString(connectionStringName);
         }
 
         private string GenerateVerificationCode()
         {
             Random generatedCode = new Random();
             return generatedCode.Next(100000, 999999).ToString();
-        }
-
-        private void txtEmailAddress_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEmailVerificationCode_Click(object sender, EventArgs e)
@@ -62,11 +58,6 @@ namespace VAI_Project_Assignment
             MessageBox.Show("Check your email and enter the verification code below.");
         }
 
-        private void txtVerifyCode_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnConfirmEmailVerificationCode_Click(object sender, EventArgs e)
         {
             if (txtVerifyCode.Text == verificationCode)
@@ -79,11 +70,6 @@ namespace VAI_Project_Assignment
             {
                 MessageBox.Show("Invalid verification code. Please try again.");
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -61,7 +61,6 @@ namespace VAI_Project_Assignment
             }
         }
 
-
         private void logoutButton_Click(object sender, EventArgs e)
         {
             // log-out logic

@@ -54,7 +54,6 @@
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(265, 31);
             txtFirstName.TabIndex = 0;
-            txtFirstName.TextChanged += txtFirstName_TextChanged;
             // 
             // txtLastName
             // 
@@ -62,7 +61,6 @@
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(265, 31);
             txtLastName.TabIndex = 1;
-            txtLastName.TextChanged += txtLastName_TextChanged;
             // 
             // txtPhoneNumber
             // 
@@ -70,7 +68,6 @@
             txtPhoneNumber.Name = "txtPhoneNumber";
             txtPhoneNumber.Size = new Size(178, 31);
             txtPhoneNumber.TabIndex = 2;
-            txtPhoneNumber.TextChanged += txtPhoneNumber_TextChanged;
             // 
             // label1
             // 
@@ -151,7 +148,6 @@
             txtEmailAddress.Name = "txtEmailAddress";
             txtEmailAddress.Size = new Size(265, 31);
             txtEmailAddress.TabIndex = 11;
-            txtEmailAddress.TextChanged += txtEmailAddress_TextChanged;
             // 
             // txtUsername
             // 
@@ -159,7 +155,6 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(265, 31);
             txtUsername.TabIndex = 12;
-            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // txtPassword
             // 
@@ -168,7 +163,6 @@
             txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(265, 31);
             txtPassword.TabIndex = 13;
-            txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // txtConfirmPassword
             // 
@@ -177,7 +171,6 @@
             txtConfirmPassword.PasswordChar = '*';
             txtConfirmPassword.Size = new Size(265, 31);
             txtConfirmPassword.TabIndex = 14;
-            txtConfirmPassword.TextChanged += txtConfirmPassword_TextChanged;
             // 
             // btnRegister
             // 
@@ -209,7 +202,6 @@
             cboCountryCode.Name = "cboCountryCode";
             cboCountryCode.Size = new Size(81, 33);
             cboCountryCode.TabIndex = 17;
-            cboCountryCode.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // RegistrationForm
             // 
