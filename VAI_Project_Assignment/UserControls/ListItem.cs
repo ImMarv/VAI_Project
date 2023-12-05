@@ -38,9 +38,9 @@ namespace VAI_Project_Assignment
         }
 
         /// <summary>
-        ///These are properties, they are useful as it means that I can
-        /// access the data within each label to be modifiable later when creating an object.
-        /// (Constructors sound familiar?)
+        /// I assume that these are constructors. Since I am making my own tool, 
+        /// it very likely signifies that I am naming the category of this new ListItem class.
+        /// It's interesting that I understand this. Huh.
         /// </summary>
 
 
