@@ -15,6 +15,7 @@ namespace VAI_Project_Assignment
 {
     public partial class Product : Form
     {
+
         public Product()
         {
 
@@ -22,16 +23,44 @@ namespace VAI_Project_Assignment
 
         }
 
-
+        DBConnection dbConn = DBConnection.getInstanceOfDBConnection();
 
         private void Product_Load(object sender, EventArgs e)
         {
             PopulateProductData("");
             timeCounter.Start();
             lblTime.Text = DateTime.Now.ToLongTimeString();
+            FILLComboSearchCode();
 
 
         }
+
+        private void FILLComboSearchCode()
+        {
+            cmbSearchItems.Items.Clear();
+            using (SqlConnection conn = dbConn.GetConnection())
+            {
+                conn.Open(); // Open the connection
+
+                // Create a command using the connection
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = "SELECT software_name FROM Product";
+                    cmd.ExecuteNonQuery();
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        cmbSearchItems.Items.Add(dr["software_name"].ToString());
+                    }
+                }
+            }
+
+        }
+
 
         // creating an instance of the Database Operations, named _dbOPS for accessing the database
         private DBOperationsPdt _dbOps = new DBOperationsPdt();

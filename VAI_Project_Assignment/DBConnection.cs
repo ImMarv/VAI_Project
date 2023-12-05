@@ -24,6 +24,7 @@ namespace VAI_Project_Assignment
             dBConnectionString = Properties.Settings.Default.DBConnectionString;
         }
 
+
         //methods ---
         /**
          * static method that gives access to the private object
@@ -33,6 +34,11 @@ namespace VAI_Project_Assignment
             if(_instance == null)
                 _instance = new DBConnection();
             return _instance;
+        }
+
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(dBConnectionString);
         }
 
 

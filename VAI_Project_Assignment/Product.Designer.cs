@@ -35,7 +35,6 @@
             cmbSearchItems = new ComboBox();
             panel3 = new Panel();
             txtProductHeading = new Label();
-            btnSearch = new Button();
             recommendationPanel = new Panel();
             recommendationViewPanel = new Panel();
             txtRecommendation = new Label();
@@ -72,7 +71,6 @@
             panel2.BackColor = Color.DimGray;
             panel2.Controls.Add(cmbSearchItems);
             panel2.Controls.Add(panel3);
-            panel2.Controls.Add(btnSearch);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -82,9 +80,9 @@
             // cmbSearchItems
             // 
             cmbSearchItems.FormattingEnabled = true;
-            cmbSearchItems.Location = new Point(128, 95);
+            cmbSearchItems.Location = new Point(12, 95);
             cmbSearchItems.Name = "cmbSearchItems";
-            cmbSearchItems.Size = new Size(270, 33);
+            cmbSearchItems.Size = new Size(307, 33);
             cmbSearchItems.TabIndex = 4;
             cmbSearchItems.SelectedIndexChanged += cmbSearchItems_SelectedIndexChanged;
             // 
@@ -108,16 +106,6 @@
             txtProductHeading.Size = new Size(158, 52);
             txtProductHeading.TabIndex = 0;
             txtProductHeading.Text = "Product";
-            // 
-            // btnSearch
-            // 
-            btnSearch.Location = new Point(10, 94);
-            btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(112, 34);
-            btnSearch.TabIndex = 2;
-            btnSearch.Text = "SEARCH";
-            btnSearch.UseVisualStyleBackColor = true;
-            btnSearch.UseWaitCursor = true;
             // 
             // recommendationPanel
             // 
@@ -192,7 +180,6 @@
         private Panel recommendationPanel;
         private Label txtRecommendation;
         private Panel recommendationViewPanel;
-        private Button btnSearch;
         private Panel panel3;
         private ComboBox cmbSearchItems;
         private FlowLayoutPanel loadProductPanel;
