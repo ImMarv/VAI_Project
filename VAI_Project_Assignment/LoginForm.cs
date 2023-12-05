@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿//  Used to connect to the database through the app.config file rather than Settings.settings
+using System.Configuration;
 
 namespace VAI_Project_Assignment
 {
@@ -12,13 +13,12 @@ namespace VAI_Project_Assignment
     /// </summary>
     public partial class LoginForm : Form
     {
-        /*
-            The connnection string for the database. It can be set to connect to any database in 
+        
+        /*  The connnection string for the database. It can be set to connect to any database in 
             the App.config file by changing the connectionStringName variable below to various 
-            connection string names in the App.config file.
-        */
+            connection string names in the App.config file. */
         private string connectionString;
-        internal const string connectionStringName = "2227823LocalDB";
+        internal const string connectionStringName = "VAI_Project_Assignment.Properties.Settings.DBConnectionString";
 
         /// <summary>
         /// Initializing an instance of the LoginForm class
@@ -27,17 +27,15 @@ namespace VAI_Project_Assignment
         {
             InitializeComponent();
             
-            /*
-                Retrieving the connection string from the App.config file using the
-                GetConnectionString(); method from the _2227823_DBHelper class and the
-                connectionStringName variable.
-            */
+
+            /*  Retrieving the connection string from the App.config file using the
+             *  GetConnectionString(); method from the _2227823_DBHelper class and the
+             *  connectionStringName variable.  */
             connectionString = _2227823_DBHelper.GetConnectionString(connectionStringName);
 
-            /*  
-                Creating a local variable to store the users username so it can later be used
-                to retrieve the active users data.
-            */
+            
+            /*  Creating a local variable to store the users username so it can later be used
+             *  to retrieve the active users data.  */
             string username;
         }
 
@@ -45,26 +43,26 @@ namespace VAI_Project_Assignment
         /// Handles the users login attempt by connecting to the database, authenticating the user
         /// and displaying any required error messages.
         /// </summary>
-        /// <param name="sender"> The Login button </param>
-        /// <param name="e"> The Click Event </param>
+        /// <param name="sender"> Login button </param>
+        /// <param name="e"> Click Event </param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //  Extract the users input from the textboxes
+            //  Extract the users input from the textboxes and store locally
             string username = txtUsername.Text;
             string enteredPassword = txtPassword.Text;
 
-            /*
-            Creating an instance of the _2227823_DBHelper class and initializing it with the
-            connection string.
-            */
+            
+            /*  Creating an instance of the _2227823_DBHelper class and initializing it with the
+             *  connection string.  */
             _2227823_DBHelper dbHelper = new _2227823_DBHelper(connectionString);
 
-            //  Authenticate user
+            /*  Returns true if the username and password have been authenticated against the
+             *  database    */
             bool isAuthenticated = dbHelper.AuthenticateUser(username, enteredPassword);
 
             if (isAuthenticated)
             {
-                //  Display a success message
+                //  Display a success message if authenticated
                 MessageBox.Show("Login successful!");
 
                 /*MainMenu mainMenu = new MainMenu();
@@ -73,16 +71,16 @@ namespace VAI_Project_Assignment
 
                 /*  Retrieve the active users data to store in the UserSession class using the
                     RetrieveUserData() method in the _2227823_DBHelper class and the authenticated
-                    username.   */
+                    local username.   */
                 UserSession userSession = dbHelper.RetrieveUserData(username);
 
                 /*  Pass the data from the UserSession class to a new instance of the UserProfileForm
                     to provide the correct properties for displaying the users data.    */
-                UserProfileForm userProfileForm = new UserProfileForm(userSession);
+                MainMenu mainMenu = new MainMenu(userSession);
 
                 //  Hide the LoginForm and display the UserProfileForm
                 this.Hide();
-                userProfileForm.Show();
+                mainMenu.Show();
             }
             else
             {
@@ -92,27 +90,31 @@ namespace VAI_Project_Assignment
         }
 
         /// <summary>
-        /// 
+        /// Allows the user to navigate from the LoginForm to the RegistrationForm
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> Register button </param>
+        /// <param name="e"> Click event </param>
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            //  Creating a new instance of the RegistrationForm
             RegistrationForm registrationForm = new RegistrationForm();
 
+            //  Hiding the LoginForm and displaying the RegistrationForm
             this.Hide();
             registrationForm.Show();
         }
 
         /// <summary>
-        /// 
+        /// Allows the user to navigate to the ForgotPasswordForm incase they are unable to login
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender"> Forgot Password button </param>
+        /// <param name="e"> Click event </param>
         private void lblForgotPassword_Click(object sender, EventArgs e)
         {
+            //  Create a new instance of the ForgotPasswordForm
             ForgotPasswordForm forgotPasswordForm = new ForgotPasswordForm();
 
+            //  Hide the LoginForm and display the ForgotPasswordForm
             this.Hide();
             forgotPasswordForm.Show();
         }

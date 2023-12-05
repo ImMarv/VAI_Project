@@ -4,7 +4,7 @@ namespace VAI_Project_Assignment
 {
     public partial class UserProfileForm : Form
     {
-        internal const string connectionStringName = "2227823LocalDB";
+        internal const string connectionStringName = "VAI_Project_Assignment.Properties.Settings.DBConnectionString";
         private string connectionString;
 
         private Label lblUsername;
@@ -44,7 +44,7 @@ namespace VAI_Project_Assignment
 
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
-            MainMenu mainMenu = new MainMenu();
+            MainMenu mainMenu = new MainMenu(userSession);
 
             this.Hide();
             mainMenu.Show();
