@@ -1,24 +1,30 @@
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 
 namespace VAI_Project_Assignment
 {
     public partial class MainMenu : Form
     {
-        public MainMenu()
+        /*  The connnection string for the database. It can be set to connect to any database in 
+            the App.config file by changing the connectionStringName variable below to various 
+            connection string names in the App.config file. */
+        private string connectionString;
+        internal const string connectionStringName = "VAI_Project_Assignment.Properties.Settings.DBConnectionString";
+
+        private UserSession userSession;
+
+        //  Initializing an instance of the MainMenu form using the UserSession data
+
+        public MainMenu(UserSession userSession)
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
+            this.userSession = userSession;
             PopulateEntryData(""); //empty strings here just to simulate no query until text is added.
         }
-
         /// <summary>
         /// this method is in charge of populating the entryViewPanel with our list view!
         /// gotten from by the same person who helped with the customlist user control!
         /// </summary>
+        ///
         private void PopulateEntryData(string search)
         {
             // getting the instance of DB connection Main Menu
@@ -51,7 +57,7 @@ namespace VAI_Project_Assignment
                 {
                     listItem.ForeColor = Color.Red;
                 }
-                else if (fortnight.Days >= 7) 
+                else if (fortnight.Days >= 7)
                 {
                     listItem.ForeColor = Color.Orange;
                 }
@@ -68,12 +74,19 @@ namespace VAI_Project_Assignment
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-            PopulateEntryData(searchTextBox.Text); // runs the command as soon as it changes
+            //PopulateEntryData(searchTextBox.Text); // runs the command as soon as it changes
         }
 
-        private void entryViewPanel_Paint(object sender, PaintEventArgs e)
+        //  The Click Event for when the user wishes to navigate to the UserProfileForm
+        private void userProfilePicture_Click(object sender, EventArgs e)
         {
+            /*  A new instance of the UserProfileForm is created using the data from the logged
+             *  in user. This is taken from where it is stored in the UserSession Class  */
+            UserProfileForm userProfileForm = new UserProfileForm(userSession);
 
+            //  The UserProfileForm is displayed and the MainMenu is hidden.
+            userProfileForm.Show();
+            this.Hide();
         }
     }
 }

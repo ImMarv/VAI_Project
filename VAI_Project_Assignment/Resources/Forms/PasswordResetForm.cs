@@ -5,7 +5,7 @@ namespace VAI_Project_Assignment
 {
     public partial class PasswordResetForm : Form
     {
-        private const string connectionStringName = "2227823LocalDB";
+        private const string connectionStringName = "VAI_Project_Assignment.Properties.Settings.DBConnectionString";
         private string connectionString;
         private string userEmail;
 

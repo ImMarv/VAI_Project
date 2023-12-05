@@ -50,7 +50,6 @@
             entryViewPanel.Name = "entryViewPanel";
             entryViewPanel.Size = new Size(1264, 548);
             entryViewPanel.TabIndex = 3;
-            entryViewPanel.Paint += entryViewPanel_Paint;
             // 
             // searchTextBox
             // 
@@ -62,6 +61,7 @@
             // 
             // userProfilePicture
             // 
+            userProfilePicture.Cursor = Cursors.Hand;
             userProfilePicture.Image = Properties.Resources.defaulticon;
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
@@ -69,6 +69,7 @@
             userProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             userProfilePicture.TabIndex = 7;
             userProfilePicture.TabStop = false;
+            userProfilePicture.Click += userProfilePicture_Click;
             // 
             // userProfilePanel
             // 
@@ -128,7 +129,7 @@
             MaximizeBox = false;
             Name = "MainMenu";
             Text = "Vendor Application Program - Main";
-            Load += Form1_Load;
+            //Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)userProfilePicture).EndInit();
             userProfilePanel.ResumeLayout(false);
             userProfilePanel.PerformLayout();

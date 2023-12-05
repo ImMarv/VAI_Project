@@ -9,7 +9,7 @@ namespace VAI_Project_Assignment
         string verificationCode;
 
         private string connectionString;
-        internal const string connectionStringName = "2227823LocalDB"; 
+        internal const string connectionStringName = "VAI_Project_Assignment.Properties.Settings.DBConnectionString"; 
 
         private string userEmail;
         public ForgotPasswordForm()
