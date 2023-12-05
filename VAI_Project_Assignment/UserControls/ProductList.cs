@@ -17,23 +17,23 @@ namespace VAI_Project_Assignment.UserControls
             InitializeComponent();
         }
 
-        
+
         private string _pdtTitle;
-       
+
 
         private void pdtTitle_Click(object sender, EventArgs e)
         {
 
         }
 
-       
+
 
         // basically it will view the row data according to the slected product by user
         private void btnViewInfo_Click(object sender, EventArgs e)
         {
             DBOperationsPdt dbProductInfo = new DBOperationsPdt();
 
-            
+
             string softwareName = productTitle;
 
             // Call the method in DBOperationsPdt to get the data for the specified name.
@@ -44,7 +44,7 @@ namespace VAI_Project_Assignment.UserControls
             {
                 string softwareType = productData["software_type"].ToString();
                 string description = productData["software_description"].ToString();
-               
+
 
                 MessageBox.Show($"Software Type: {softwareType}\nDescription: {description}");
             }
@@ -63,7 +63,7 @@ namespace VAI_Project_Assignment.UserControls
             set { _pdtTitle = value; pdtTitle.Text = value; }
         }
 
-       
+
 
 
     }

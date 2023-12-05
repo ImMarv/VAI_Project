@@ -33,6 +33,7 @@
             checkBox1 = new CheckBox();
             sidePanel = new Panel();
             bottomPanel = new Panel();
+            btnReview = new Button();
             SuspendLayout();
             // 
             // pdtTitle
@@ -48,9 +49,9 @@
             // 
             // onBtnViewInfo
             // 
-            onBtnViewInfo.Location = new Point(369, 32);
+            onBtnViewInfo.Location = new Point(378, 32);
             onBtnViewInfo.Name = "onBtnViewInfo";
-            onBtnViewInfo.Size = new Size(227, 69);
+            onBtnViewInfo.Size = new Size(198, 49);
             onBtnViewInfo.TabIndex = 2;
             onBtnViewInfo.Text = "View Information";
             onBtnViewInfo.UseVisualStyleBackColor = true;
@@ -59,7 +60,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(602, 63);
+            checkBox1.Location = new Point(593, 43);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(68, 29);
             checkBox1.TabIndex = 3;
@@ -84,10 +85,20 @@
             bottomPanel.Size = new Size(46, 151);
             bottomPanel.TabIndex = 5;
             // 
+            // btnReview
+            // 
+            btnReview.Location = new Point(378, 87);
+            btnReview.Name = "btnReview";
+            btnReview.Size = new Size(199, 35);
+            btnReview.TabIndex = 6;
+            btnReview.Text = "Review";
+            btnReview.UseVisualStyleBackColor = true;
+            // 
             // ProductList
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnReview);
             Controls.Add(checkBox1);
             Controls.Add(onBtnViewInfo);
             Controls.Add(pdtTitle);
@@ -105,5 +116,6 @@
         private CheckBox checkBox1;
         private Panel sidePanel;
         private Panel bottomPanel;
+        private Button btnReview;
     }
 }
