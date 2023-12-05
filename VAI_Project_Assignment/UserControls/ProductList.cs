@@ -17,40 +17,61 @@ namespace VAI_Project_Assignment.UserControls
             InitializeComponent();
         }
 
-        
+
         private string _pdtTitle;
-       
+
 
         private void pdtTitle_Click(object sender, EventArgs e)
         {
 
         }
 
-       
+        private string GetStringFromDataRow(DataRow dataRow, string columnName)
+        {
+            return dataRow[columnName]?.ToString();
+        }
+
+
 
         // basically it will view the row data according to the slected product by user
         private void btnViewInfo_Click(object sender, EventArgs e)
         {
-            DBOperationsPdt dbProductInfo = new DBOperationsPdt();
-
-            
-            string softwareName = productTitle;
-
-            // Call the method in DBOperationsPdt to get the data for the specified name.
-            DataRow productData = dbProductInfo.GetProductByName(softwareName);
-
-            // Now, you can use 'productData' to display or process the information as needed.
-            if (productData != null)
+            try
             {
-                string softwareType = productData["software_type"].ToString();
-                string description = productData["software_description"].ToString();
-               
+                DBOperationsPdt dbProductInfo = new DBOperationsPdt();
 
-                MessageBox.Show($"Software Type: {softwareType}\nDescription: {description}");
+
+                string softwareName = productTitle;
+
+                // Call the method in DBOperationsPdt to get the data for the specified name.
+                DataRow productData = dbProductInfo.GetProductByName(softwareName);
+
+                // Now, you can use 'productData' to display or process the information as needed.
+                //used the ('?') to ensure that 'ToStriing' method won't throw an exception.
+                if (productData != null)
+                {
+                    string softwareType = GetStringFromDataRow(productData, "software_type");
+                    string description = GetStringFromDataRow(productData, "software_description");
+
+             
+                    string businessAreas = GetStringFromDataRow(productData, "business_areas");
+                    string modules = GetStringFromDataRow(productData, "modules");
+                    string clientTypes = GetStringFromDataRow(productData, "client_types");
+                    string cloud = GetStringFromDataRow(productData, "cloud");
+                    string additionalInfo = GetStringFromDataRow(productData, "additional_info");
+
+
+                    ProductInfoForm productInfoForm = new ProductInfoForm(softwareType, description, businessAreas, modules, clientTypes, cloud, additionalInfo);
+                    productInfoForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show($"Product with name '{softwareName}' not found.");
+                }
             }
-            else
+            catch (Exception ex )
             {
-                MessageBox.Show($"Product with name '{softwareName}' not found.");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
 
@@ -63,7 +84,7 @@ namespace VAI_Project_Assignment.UserControls
             set { _pdtTitle = value; pdtTitle.Text = value; }
         }
 
-       
+
 
 
     }
