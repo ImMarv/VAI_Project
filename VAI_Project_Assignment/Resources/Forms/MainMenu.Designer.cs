@@ -1,4 +1,6 @@
-﻿namespace VAI_Project_Assignment
+﻿using VAI_Project_Assignment.Properties;
+
+namespace VAI_Project_Assignment
 {
     partial class MainMenu
     {
@@ -54,7 +56,6 @@
             entryViewPanel.Name = "entryViewPanel";
             entryViewPanel.Size = new Size(1264, 548);
             entryViewPanel.TabIndex = 3;
-            entryViewPanel.Paint += entryViewPanel_Paint;
             // 
             // adminToolsPanel
             // 
@@ -73,7 +74,7 @@
             // 
             // userProfilePicture
             // 
-            userProfilePicture.Image = (Image)resources.GetObject("userProfilePicture.Image");
+            userProfilePicture.Image = (Image)resources("userProfilePicture.Image");
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
             userProfilePicture.Size = new Size(50, 50);
