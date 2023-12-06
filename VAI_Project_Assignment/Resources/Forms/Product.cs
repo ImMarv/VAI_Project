@@ -22,6 +22,7 @@ namespace VAI_Project_Assignment
 
         }
 
+        //Get the instance of the dbconnection so i can use it in this class
         DBConnection dbConn = DBConnection.getInstanceOfDBConnection();
 
         private void Product_Load(object sender, EventArgs e)
@@ -30,7 +31,6 @@ namespace VAI_Project_Assignment
             timeCounter.Start();
             lblTime.Text = DateTime.Now.ToLongTimeString();
             FILLComboSearchCode();
-
 
         }
 
@@ -70,27 +70,41 @@ namespace VAI_Project_Assignment
         /// </summary>
         private void PopulateProductData(string search)
         {
-            // get the data from the database first before anything else
-            DataTable productNameData = _dbOps.GetProductName(search);
-
-            // clear the panel first to before adding new items
-            loadProductPanel.Controls.Clear();
-
-            // now: this will go through each row in the Table created.
-            foreach (DataRow row in productNameData.Rows)
+            try
             {
-                // create a new ListItem for each row of data: just software name.
-                var productList = new ProductList
+                //just to ensure that parameter is not null or empty before attempting to pull data 
+                if (string.IsNullOrEmpty(search))
                 {
-                    productTitle = row["software_name"].ToString(),
+                    MessageBox.Show("Recheck search parameter");
+                    return;
+                }
+                // get the data from the database
+                DataTable productNameData = _dbOps.GetProductName(search);
 
-                };
+                // clear the panel first to before adding new items
+                loadProductPanel.Controls.Clear();
+
+                // now: this will go through each row in the Table created.
+                foreach (DataRow row in productNameData.Rows)
+                {
+                    // create a new ProductList for each row of data: just software name.
+                    var productList = new ProductList
+                    {
+                        productTitle = row["software_name"].ToString(),
+
+                    };
 
 
 
-                // add the ListItem to the panel
-                loadProductPanel.Controls.Add(productList);
+                    // add the ListItem to the panel
+                    loadProductPanel.Controls.Add(productList);
+                }
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Recheck: {ex.Message}");
             }
+            
         }
 
 

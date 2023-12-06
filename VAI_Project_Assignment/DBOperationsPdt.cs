@@ -30,6 +30,7 @@ namespace VAI_Project_Assignment
 
         public DataRow GetProductByName(string softwareName)
         {
+            //parameterized queries to prevent SQL injection 
             SqlParameter[] parameters = {
             new SqlParameter("@softwareName", SqlDbType.NVarChar) { Value = softwareName }
         };
@@ -39,7 +40,7 @@ namespace VAI_Project_Assignment
                 parameters
             );
 
-            // Assuming productId is unique, return the first (and only) row, or null if not found.
+            // knowing that productId is unique, return the first (and only) row, or null if not found.
             return dataSetProduct.Tables[0].Rows.Count > 0
                 ? dataSetProduct.Tables[0].Rows[0]
                 : null;
