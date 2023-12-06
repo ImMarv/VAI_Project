@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             entryViewPanel = new FlowLayoutPanel();
             searchTextBox = new TextBox();
             userProfilePicture = new PictureBox();
@@ -47,11 +46,11 @@
             entryViewPanel.BackColor = SystemColors.ControlLightLight;
             entryViewPanel.BorderStyle = BorderStyle.Fixed3D;
             entryViewPanel.Dock = DockStyle.Bottom;
-            entryViewPanel.Location = new Point(0, 422);
+            entryViewPanel.Location = new Point(0, 133);
             entryViewPanel.Name = "entryViewPanel";
-            entryViewPanel.Size = new Size(1264, 259);
+            entryViewPanel.Size = new Size(1264, 548);
             entryViewPanel.TabIndex = 3;
-            entryViewPanel.Paint += entryViewPanel_Paint_1;
+            entryViewPanel.Paint += entryViewPanel_Paint;
             // 
             // searchTextBox
             // 
