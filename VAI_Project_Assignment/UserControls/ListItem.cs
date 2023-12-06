@@ -39,7 +39,8 @@ namespace VAI_Project_Assignment
 
         private void viewEntryButton_Click(object sender, EventArgs e)
         {
-
+            Product productPage = new Product();
+            productPage.ShowDialog();
         }
 
         /// <summary>
