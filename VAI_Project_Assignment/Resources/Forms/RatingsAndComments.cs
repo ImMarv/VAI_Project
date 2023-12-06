@@ -12,14 +12,17 @@ namespace VAI_Project_Assignment
 {
     public partial class RatingsAndComments : Form
     {
-        string UserComment;
-        int UserRating;
+        public string UserComment;
+        public int UserRating;
         public RatingsAndComments(string UserComment, int UserRating)
         {
             InitializeComponent();
         }
+
+        DBConnection dbConn = DBConnection.getInstanceOfDBConnection();
+
         private void SubmitButton_Click(object sender, EventArgs e)
-        {
+        {   
             int CharCount = 0;
             for (int i = 0; i < CommentInput.Text.Length; i++)
             {
