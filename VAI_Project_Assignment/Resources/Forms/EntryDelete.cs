@@ -40,7 +40,7 @@ namespace VAI_Project_Assignment.Forms
                 if (entryDataGrid.SelectedRows.Count >0)
                 {
                     // Gets the company_ID from the selected row.
-                    int companyIDDel = Convert.ToInt32(entryDataGrid.SelectedRows[0].Cells["Company_ID"].Value);
+                    int companyIDDel = Convert.ToInt32(entryDataGrid.SelectedRows[0].Index);
 
                     // validation process.
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this entry?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
