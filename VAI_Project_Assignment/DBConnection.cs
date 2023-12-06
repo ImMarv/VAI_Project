@@ -93,5 +93,30 @@ namespace VAI_Project_Assignment
         }
 
        
+        // thank you chatGPT for the useless help and stackoverflow users for having the same issues as me!
+        // (https://stackoverflow.com/questions/38445598/delete-sql-row-and-change-id)
+        public void setDataSet(string sqlQuery, SqlParameter[]? parameters = null)
+        {
+            try
+            {
+                using (SqlConnection connToDB = new SqlConnection(dBConnectionString))
+                {
+                    connToDB.Open();
+                    SqlCommand cmd = new SqlCommand(sqlQuery, connToDB);
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+                    // executes the non query.
+                    cmd.ExecuteNonQuery(); ;
+                    // closes the database connection (cuz duh, data leaks)
+                    connToDB.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exeception: recheck " + ex.Message);
+            }
+        }
     }
 }
