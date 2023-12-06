@@ -1,5 +1,5 @@
 ﻿using VAI_Project_Assignment.Properties;
-
+using VAI_Project_Assignment;
 namespace VAI_Project_Assignment
 {
     partial class MainMenu
@@ -74,7 +74,7 @@ namespace VAI_Project_Assignment
             // 
             // userProfilePicture
             // 
-            userProfilePicture.Image = (Image)resources("userProfilePicture.Image");
+            userProfilePicture.Image = Properties.Resources.defaulticon;
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
             userProfilePicture.Size = new Size(50, 50);
