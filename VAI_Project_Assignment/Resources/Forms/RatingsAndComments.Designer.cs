@@ -32,11 +32,7 @@
             this.CommentInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Rating = new System.Windows.Forms.Label();
-            this.OneStar = new System.Windows.Forms.Button();
-            this.TwoStars = new System.Windows.Forms.Button();
-            this.ThreeStars = new System.Windows.Forms.Button();
-            this.FourStars = new System.Windows.Forms.Button();
-            this.FiveStars = new System.Windows.Forms.Button();
+            this.RatingBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // SubmitButton
@@ -47,6 +43,7 @@
             this.SubmitButton.TabIndex = 0;
             this.SubmitButton.Text = "Submit";
             this.SubmitButton.UseVisualStyleBackColor = true;
+            this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // CommentInput
             // 
@@ -76,64 +73,27 @@
             this.Rating.Size = new System.Drawing.Size(72, 25);
             this.Rating.TabIndex = 3;
             this.Rating.Text = "Rating :";
-            this.Rating.Click += new System.EventHandler(this.Rating_Click);
             // 
-            // OneStar
+            // RatingBox
             // 
-            this.OneStar.Location = new System.Drawing.Point(562, 132);
-            this.OneStar.Name = "OneStar";
-            this.OneStar.Size = new System.Drawing.Size(21, 26);
-            this.OneStar.TabIndex = 4;
-            this.OneStar.Text = "★";
-            this.OneStar.UseVisualStyleBackColor = true;
-            this.OneStar.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // TwoStars
-            // 
-            this.TwoStars.Location = new System.Drawing.Point(586, 132);
-            this.TwoStars.Name = "TwoStars";
-            this.TwoStars.Size = new System.Drawing.Size(21, 26);
-            this.TwoStars.TabIndex = 5;
-            this.TwoStars.Text = "★";
-            this.TwoStars.UseVisualStyleBackColor = true;
-            // 
-            // ThreeStars
-            // 
-            this.ThreeStars.Location = new System.Drawing.Point(609, 132);
-            this.ThreeStars.Name = "ThreeStars";
-            this.ThreeStars.Size = new System.Drawing.Size(21, 26);
-            this.ThreeStars.TabIndex = 6;
-            this.ThreeStars.Text = "★";
-            this.ThreeStars.UseVisualStyleBackColor = true;
-            // 
-            // FourStars
-            // 
-            this.FourStars.Location = new System.Drawing.Point(632, 132);
-            this.FourStars.Name = "FourStars";
-            this.FourStars.Size = new System.Drawing.Size(21, 26);
-            this.FourStars.TabIndex = 7;
-            this.FourStars.Text = "★";
-            this.FourStars.UseVisualStyleBackColor = true;
-            // 
-            // FiveStars
-            // 
-            this.FiveStars.Location = new System.Drawing.Point(655, 132);
-            this.FiveStars.Name = "FiveStars";
-            this.FiveStars.Size = new System.Drawing.Size(21, 26);
-            this.FiveStars.TabIndex = 8;
-            this.FiveStars.Text = "★";
-            this.FiveStars.UseVisualStyleBackColor = true;
+            this.RatingBox.FormattingEnabled = true;
+            this.RatingBox.Items.AddRange(new object[] {
+            "★",
+            "★★",
+            "★★★",
+            "★★★★",
+            "★★★★★"});
+            this.RatingBox.Location = new System.Drawing.Point(573, 135);
+            this.RatingBox.Name = "RatingBox";
+            this.RatingBox.Size = new System.Drawing.Size(121, 23);
+            this.RatingBox.TabIndex = 4;
             // 
             // RatingsAndComments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.FiveStars);
-            this.Controls.Add(this.FourStars);
-            this.Controls.Add(this.ThreeStars);
-            this.Controls.Add(this.TwoStars);
-            this.Controls.Add(this.OneStar);
+            this.Controls.Add(this.RatingBox);
             this.Controls.Add(this.Rating);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CommentInput);
@@ -151,10 +111,6 @@
         private TextBox CommentInput;
         private Label label1;
         private Label Rating;
-        private Button OneStar;
-        private Button TwoStars;
-        private Button ThreeStars;
-        private Button FourStars;
-        private Button FiveStars;
+        private ComboBox RatingBox;
     }
 }
