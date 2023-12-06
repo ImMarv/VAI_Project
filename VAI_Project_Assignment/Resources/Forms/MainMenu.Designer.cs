@@ -30,15 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             entryViewPanel = new FlowLayoutPanel();
-            adminToolsPanel = new Panel();
             searchTextBox = new TextBox();
             userProfilePicture = new PictureBox();
             userProfilePanel = new Panel();
             logoutButton = new Button();
             searchBoxPanel = new Panel();
-            adminToolbox = new ComboBox();
             label1 = new Label();
-            entryViewPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)userProfilePicture).BeginInit();
             userProfilePanel.SuspendLayout();
             searchBoxPanel.SuspendLayout();
@@ -49,20 +46,12 @@
             entryViewPanel.AutoScroll = true;
             entryViewPanel.BackColor = SystemColors.ControlLightLight;
             entryViewPanel.BorderStyle = BorderStyle.Fixed3D;
-            entryViewPanel.Controls.Add(adminToolsPanel);
             entryViewPanel.Dock = DockStyle.Bottom;
             entryViewPanel.Location = new Point(0, 422);
             entryViewPanel.Name = "entryViewPanel";
             entryViewPanel.Size = new Size(1264, 259);
             entryViewPanel.TabIndex = 3;
             entryViewPanel.Paint += entryViewPanel_Paint_1;
-            // 
-            // adminToolsPanel
-            // 
-            adminToolsPanel.Location = new Point(3, 3);
-            adminToolsPanel.Name = "adminToolsPanel";
-            adminToolsPanel.Size = new Size(200, 0);
-            adminToolsPanel.TabIndex = 0;
             // 
             // searchTextBox
             // 
@@ -74,13 +63,15 @@
             // 
             // userProfilePicture
             // 
-            userProfilePicture.Image = (Image)resources.GetObject("userProfilePicture.Image");
+            userProfilePicture.Cursor = Cursors.Hand;
+            userProfilePicture.Image = Properties.Resources.defaulticon;
             userProfilePicture.Location = new Point(11, 12);
             userProfilePicture.Name = "userProfilePicture";
             userProfilePicture.Size = new Size(50, 50);
             userProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
             userProfilePicture.TabIndex = 7;
             userProfilePicture.TabStop = false;
+            userProfilePicture.Click += userProfilePicture_Click;
             // 
             // userProfilePanel
             // 
@@ -96,7 +87,6 @@
             userProfilePanel.Name = "userProfilePanel";
             userProfilePanel.Size = new Size(1264, 130);
             userProfilePanel.TabIndex = 8;
-        
             // 
             // logoutButton
             // 
@@ -112,23 +102,12 @@
             // 
             searchBoxPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             searchBoxPanel.BackColor = SystemColors.ControlLight;
-            searchBoxPanel.Controls.Add(adminToolbox);
             searchBoxPanel.Controls.Add(searchTextBox);
             searchBoxPanel.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
             searchBoxPanel.Location = new Point(0, 80);
             searchBoxPanel.Name = "searchBoxPanel";
             searchBoxPanel.Size = new Size(1263, 47);
             searchBoxPanel.TabIndex = 9;
-            // 
-            // adminToolbox
-            // 
-            adminToolbox.FormattingEnabled = true;
-            adminToolbox.Location = new Point(1131, 9);
-            adminToolbox.Name = "adminToolbox";
-            adminToolbox.Size = new Size(121, 38);
-            adminToolbox.TabIndex = 7;
-            adminToolbox.Text = "Admin";
-            adminToolbox.SelectedIndexChanged += adminToolbox_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -152,8 +131,7 @@
             MaximizeBox = false;
             Name = "MainMenu";
             Text = "Vendor Application Program - Main";
-            Load += Form1_Load;
-            entryViewPanel.ResumeLayout(false);
+            //Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)userProfilePicture).EndInit();
             userProfilePanel.ResumeLayout(false);
             userProfilePanel.PerformLayout();
@@ -171,7 +149,5 @@
         private Panel searchBoxPanel;
         private Label label1;
         private Button logoutButton;
-        private Panel adminToolsPanel;
-        private ComboBox adminToolbox;
     }
 }
