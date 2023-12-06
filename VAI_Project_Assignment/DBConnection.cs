@@ -12,7 +12,7 @@ namespace VAI_Project_Assignment
     {
         //attributes
         //private object of the class itself
-        private static DBConnection _instance;
+        private static DBConnection? _instance;
 
         //the connection string
         private string dBConnectionString;
@@ -26,7 +26,6 @@ namespace VAI_Project_Assignment
 
 
         //methods ---
-        //methods
         /**
          * static method that gives access to the private object
          */
@@ -57,19 +56,30 @@ namespace VAI_Project_Assignment
             //create the dataset object 
             DataSet dataset = new DataSet();
 
-
+            
             try
             {
                 using (SqlConnection connToDB = new SqlConnection(dBConnectionString))
                 {
                     // open connection
                     connToDB.Open();
+                    ///
+                    /// originally, this "using" block was not here. 
+                    /// all it really does is create the Sqlcommand cmd using the provided sqlQuery and SqlConnection.
+                    ///
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, connToDB))
+                    {
+                        if (parameters != null)
+                        {
+                            cmd.Parameters.AddRange(parameters);
+                        }
 
-                    // send SQL Query to the database 
-                    SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, connToDB);
+                        // send SQL Query to the database 
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
-                    // fill in the dataset
-                    adapter.Fill(dataset);
+                        // fill in the dataset
+                        adapter.Fill(dataset);
+                    }
                 }
 
             }
