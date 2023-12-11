@@ -82,7 +82,6 @@
             this.NewInfoBox.Name = "NewInfoBox";
             this.NewInfoBox.Size = new System.Drawing.Size(613, 313);
             this.NewInfoBox.TabIndex = 2;
-            this.NewInfoBox.TextChanged += new System.EventHandler(this.NewInfoBox_TextChanged);
             // 
             // Notifications
             // 

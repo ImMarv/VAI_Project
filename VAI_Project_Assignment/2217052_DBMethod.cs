@@ -19,6 +19,25 @@ namespace VAI_Project_Assignment
             this.connectionString = connectionString;
         }
 
+        public void InsertUserRating(string UserComment, int UserRating)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("INSERT INTO Reviews " +
+                    "(rating, comment) VALUES (@UserRating, @UserComment); SELECT SCOPE_IDENTITY();", connection))
+                {
+                    command.Parameters.Add("@UserRating", SqlDbType.Int, 1).Value = UserRating;
+                    command.Parameters.Add("@UserComment", SqlDbType.VarChar, 500).Value = UserComment;
+
+                    int Review_ID = Convert.ToInt32(command.ExecuteScalar());
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public static string GetConnectionString(string connectionStringName)
         {
             var connectionStringSettings = ConfigurationManager.ConnectionStrings[connectionStringName];

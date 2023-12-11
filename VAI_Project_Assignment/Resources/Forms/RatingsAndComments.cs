@@ -12,14 +12,17 @@ namespace VAI_Project_Assignment
 {
     public partial class RatingsAndComments : Form
     {
+        internal const string connectionStringName = "VAI_Project_Assignment.Properties.Settings.DBConnection";
+        private string conntectionString;
+        
         public string UserComment;
         public int UserRating;
         public RatingsAndComments()
         {
             InitializeComponent();
+            //connectionString = _2217052_DBMethod.GetConnectionString(connectionStringName);
+            //_2217052_DBMethod dBMethod = new _2217052_DBMethod(connectionString);
         }
-
-        DBConnection dbConn = DBConnection.getInstanceOfDBConnection();
 
         private void SubmitButton_Click(object sender, EventArgs e)
         {   
@@ -47,6 +50,9 @@ namespace VAI_Project_Assignment
                 StarCount++;
             }
             int UserRating = StarCount;
+
+            //_2217052_DBMethod dbMethod = new _2217052_DBMethod(connectionString);
+            //dbMethod.InsertUserRating(UserComment, UserRating);
         }
     }
 }
