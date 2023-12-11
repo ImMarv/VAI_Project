@@ -101,7 +101,6 @@
             this.Controls.Add(this.SubmitButton);
             this.Name = "RatingsAndComments";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.RatingsAndComments_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

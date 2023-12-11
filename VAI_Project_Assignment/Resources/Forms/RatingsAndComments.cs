@@ -52,12 +52,6 @@ namespace VAI_Project_Assignment
                 StarCount++;
             }
             int UserRating = StarCount;
-        }
-        //kinda silly but understandable feature
-        private void AnonymousButton_CheckedChanged(object sender, EventArgs e)
-        {
-            string Anonymous = "Your username will not be used in this review.";
-            MessageBox.Show(Anonymous);
-        }
+        }   
     }
 }
