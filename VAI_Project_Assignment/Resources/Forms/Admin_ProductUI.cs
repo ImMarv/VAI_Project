@@ -178,15 +178,8 @@ namespace VAI_Project_Assignment
                 }
                 MessageBox.Show("Saved Succesfully");
 
-                Notifications Notif1 = new Notifications();
-
-                Notif1.Show();
-
                 // Update the DataGridView
                 FILLDGV();
-
-                // Notifications notifications = new Notifications();
-                // notifications.NewNotification = $"{cmbSoftwareName.Text} {txtSoftwareType.Text} {txtDescription.Text} {txtBusinessAreas.Text} {txtModule.Text} {txtClientType.Text} {txtCloud.Text} {txtAdditionalInfo.Text}";
 
 
 

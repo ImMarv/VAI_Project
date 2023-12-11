@@ -77,18 +77,19 @@
             // NewInfoBox
             // 
             this.NewInfoBox.BackColor = System.Drawing.SystemColors.Control;
-            this.NewInfoBox.Location = new System.Drawing.Point(180, 23);
+            this.NewInfoBox.Location = new System.Drawing.Point(31, 75);
             this.NewInfoBox.Multiline = true;
             this.NewInfoBox.Name = "NewInfoBox";
-            this.NewInfoBox.Size = new System.Drawing.Size(467, 231);
+            this.NewInfoBox.Size = new System.Drawing.Size(613, 313);
             this.NewInfoBox.TabIndex = 2;
+            this.NewInfoBox.TextChanged += new System.EventHandler(this.NewInfoBox_TextChanged);
             // 
             // Notifications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(677, 281);
+            this.ClientSize = new System.Drawing.Size(677, 413);
             this.Controls.Add(this.NewInfoBox);
             this.Controls.Add(this.label1);
             this.Name = "Notifications";
