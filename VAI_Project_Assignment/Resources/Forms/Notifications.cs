@@ -17,10 +17,10 @@ namespace VAI_Project_Assignment.Resources.Forms
             InitializeComponent();
         }
 
-        public string NewNotification { get; set; }
+        // public string NewNotification { get; set; }
 
 
-        private void Notifications_Move(object sender, EventArgs e)
+        public void Notifications_Move(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
@@ -31,7 +31,7 @@ namespace VAI_Project_Assignment.Resources.Forms
 
         private void notifyIcon1_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
-            NewInfoBox.Text = NewNotification;
+            // NewInfoBox.Text;
             this.Show();
         }
     }
