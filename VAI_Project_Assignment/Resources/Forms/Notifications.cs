@@ -12,15 +12,14 @@ namespace VAI_Project_Assignment.Resources.Forms
 {
     public partial class Notifications : Form
     {
-        public static Notifications instance;
-        public TextBox NewNotification;
         public Notifications()
         {
             InitializeComponent();
-            instance = this;
-            NewNotification = NewInfoBox;
         }
-        
+
+        public string NewNotification { get; set; }
+
+
         private void Notifications_Move(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -30,9 +29,10 @@ namespace VAI_Project_Assignment.Resources.Forms
             }
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
-            
+            NewInfoBox.Text = NewNotification;
+            this.Show();
         }
     }
 }

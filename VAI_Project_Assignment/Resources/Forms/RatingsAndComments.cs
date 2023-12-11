@@ -14,7 +14,7 @@ namespace VAI_Project_Assignment
     {
         public string UserComment;
         public int UserRating;
-        public RatingsAndComments(string UserComment, int UserRating)
+        public RatingsAndComments()
         {
             InitializeComponent();
         }

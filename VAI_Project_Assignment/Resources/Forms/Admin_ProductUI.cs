@@ -8,12 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VAI_Project_Assignment.Resources.Forms;
 
 namespace VAI_Project_Assignment
 {
     public partial class Admin_ProductUI : Form
     {
+
         DBConnection dbConn = DBConnection.getInstanceOfDBConnection();
+
         public Admin_ProductUI()
         {
             InitializeComponent();
@@ -173,8 +176,11 @@ namespace VAI_Project_Assignment
                     }
                 }
                 MessageBox.Show("Saved Succesfully");
-                // Update the DataGridView
-                FILLDGV();
+
+                Notifications notifications = new Notifications();
+                notifications.NewNotification = $"{cmbSoftwareName.Text} {txtSoftwareType.Text} {txtDescription.Text} {txtBusinessAreas.Text} {txtModule.Text} {txtClientType.Text} {txtCloud.Text} {txtAdditionalInfo.Text}";
+
+
 
                 // Clear controls
                 cmbSoftwareName.Text = string.Empty;
