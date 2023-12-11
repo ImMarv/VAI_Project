@@ -30,24 +30,28 @@ namespace VAI_Project_Assignment
             txtClientType.Text = clientTypes;
             txtCloud.Text = cloud;
             txtAdditionalInfo.Text = additionalInfo;
+            // Similar to what I did with the notifications but once again it seems like it would be completely fine in practise.
             PDFButtonData = $"{txtSoftwareType}\n {txtDescription}\n {txtBusinessArea}\n {txtModule}\n {txtClientType}\n {txtCloud}\n {txtAdditionalInfo}";
 
         }
 
+        // this is kind of a silly way to handle the PDFs but it does the job.
+        // it essentially puts all the details as is onto a PDF for anyone to view on the button click
         public void PDFButton_Click(object sender, EventArgs e)
         {
+            // Retrieves the string of variables from above
             string inputString = PDFButtonData;
 
-            // Specify the output PDF file path
+            // Specifies the output PDF file path
             string outputPath = "output.pdf";
 
-            // Create a PdfWriter object to write to the output file
+            // Creates a PdfWriter object to write to file
             using (PdfWriter writer = new PdfWriter(outputPath))
             {
-                // Create a PdfDocument object
+                // Create a PdfDocument
                 using (PdfDocument pdf = new PdfDocument(writer))
                 {
-                    // Create a Document object to add elements to the PDF
+                    // Adds document elements to the PDF
                     Document document = new Document(pdf);
 
                     // Add the string content to the PDF

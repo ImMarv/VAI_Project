@@ -101,6 +101,7 @@
             this.Controls.Add(this.SubmitButton);
             this.Name = "RatingsAndComments";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.RatingsAndComments_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,5 +114,8 @@
         private Label label1;
         private Label Rating;
         private ComboBox RatingBox;
+        private CheckBox checkBox1;
+        private CheckBox AnonymousButton;
+        private Label AnonymousText;
     }
 }

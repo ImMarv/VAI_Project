@@ -8,6 +8,7 @@ namespace VAI_Project_Assignment
 {
     public class ProductSession
     {
+        // another section that 2227823 helped me out with, lets me get all the data I'd need for the notifications to work. 
         public int ProductID { get; set; }
         public string SoftwareName { get; set; }
         public string SoftwareType { get; set; }

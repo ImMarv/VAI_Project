@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+// 2217052
+// I was wanting to see if I could possibly test parts of my program using a makeshift database helper with the help of my groupmate (SSID : 2227823) but I couldn't even get it to work in the slightest bit
+// Though in theory this DOES actually allow the notifications to work once the Admin_ProductUI gets a Save button press as the information passes from here to the notifaction system completely un-scaved.
+
 namespace VAI_Project_Assignment
 {
     
@@ -14,6 +18,7 @@ namespace VAI_Project_Assignment
     {
         private readonly string connectionString;
 
+        // opens up a connection string to be able to communicate with the database
         public _2217052_DBMethod(string connectionString)
         {
             this.connectionString = connectionString;
@@ -21,7 +26,7 @@ namespace VAI_Project_Assignment
 
         public void InsertUserRating(string UserComment, int UserRating)
         {
-
+            //opens the connection for the ability of adding values into the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -51,6 +56,7 @@ namespace VAI_Project_Assignment
             {
                 connection.Open();
 
+                
                 using (SqlCommand command = new SqlCommand("SELECT * FROM [User] INNER JOIN ContactInfo ON [User].Contact_Info_ID = ContactInfo.Contact_Info_ID WHERE [User].username = @username", connection))
                 {
                     command.Parameters.AddWithValue("@username", activeUserData);
@@ -84,7 +90,7 @@ namespace VAI_Project_Assignment
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
+                
                 using (SqlCommand command = new SqlCommand("SELECT [product_Id], [software_name], [software_type], [software_description], [business_areas], [modules], [client_types], [cloud], [additional_info], [number_of_likes]\r\nFROM [dbo].[Product];", connection))
                 {
                     command.Parameters.AddWithValue("@Product", productData);
@@ -93,6 +99,9 @@ namespace VAI_Project_Assignment
 
                     if (reader.Read())
                     {
+
+                        //I ended up having some issues here, I always thought GetInt32 worked a specific way but since I couldn't figure it out
+                        //I ended up trying to work around it with just the other data fields and it seems to be fine.
                         productSession = new ProductSession();
 
                         productSession.ProductID = reader.GetInt32(reader.GetOrdinal("product_Id"));
